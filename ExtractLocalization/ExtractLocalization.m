@@ -16,14 +16,14 @@ static NSString *stringRegexs = @"@\"[^\"]*\"";
 
 static id sharedPlugin = nil;
 
-+ (void)pluginDidLoad:(NSBundle *)plugin {
++(void)pluginDidLoad:(NSBundle *)plugin {
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        sharedPlugin = [[self alloc] init];
+        sharedPlugin = [[self alloc]initWithBundle:plugin];
     });
 }
 
-- (id)init {
+-(id)initWithBundle:(NSBundle *)bundle{
     if (self = [super init]) {
         NSMenuItem *viewMenuItem = [[NSApp mainMenu] itemWithTitle:@"Edit"];
         if (viewMenuItem) {
@@ -33,6 +33,8 @@ static id sharedPlugin = nil;
             [sample setTarget:self];
             [[viewMenuItem submenu] addItem:sample];
         }
+        NSNib *nib = [[NSNib alloc] initWithNibNamed:@"ExtractLocalizationPopoverView" bundle:bundle];
+        [nib instantiateNibWithOwner:self topLevelObjects:nil];
     }
     return self;
 }
@@ -65,7 +67,6 @@ static id sharedPlugin = nil;
                 continue;
             }
             NSString *string = [line substringWithRange:matchedRangeInLine];
-            NSLog(@"uaheuaheuhaeuhauehauehae");
             NSString *outputString = [NSString stringWithFormat:@"NSLocalizedString(%@, %@)", string, string];
             addedLength = addedLength + outputString.length - string.length;
             if ([textView shouldChangeTextInRange:matchedRangeInDocument replacementString:outputString]) {
@@ -73,6 +74,11 @@ static id sharedPlugin = nil;
                                           withAttributedString:[[NSAttributedString alloc] initWithString:outputString]];
                 [textView didChangeText];
             }
+            
+            NSRect selectionRectOnScreen = [textView firstRectForCharacterRange:NSMakeRange(matchedRangeInLine.location+addedLength,1)];
+            NSRect selectionRectInWindow = [textView.window convertRectFromScreen:selectionRectOnScreen];
+            NSRect selectionRectInView = [textView convertRect:selectionRectInWindow fromView:nil];
+            [self.extractLocalizationView showRelativeToRect:selectionRectInView ofView:textView preferredEdge:NSMinYEdge];
         }
     }
 }

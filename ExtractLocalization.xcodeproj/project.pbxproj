@@ -126,7 +126,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastUpgradeCheck = 0460;
-				ORGANIZATIONNAME = nanaimostudio;
+				ORGANIZATIONNAME = viniciusmo;
 			};
 			buildConfigurationList = 09F6562D174041010000486B /* Build configuration list for PBXProject "ExtractLocalization" */;
 			compatibilityVersion = "Xcode 3.2";
