@@ -13,6 +13,7 @@
 		09F65638174041010000486B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 09F65637174041010000486B /* Foundation.framework */; };
 		09F6563E174041010000486B /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 09F6563C174041010000486B /* InfoPlist.strings */; };
 		09F65641174041010000486B /* ExtractLocalization.m in Sources */ = {isa = PBXBuildFile; fileRef = 09F65640174041010000486B /* ExtractLocalization.m */; };
+		4C0279B51962E99900748E92 /* ExtractLocationView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C0279B41962E99900748E92 /* ExtractLocationView.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,6 +28,7 @@
 		09F6563F174041010000486B /* ExtractLocalization.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ExtractLocalization.h; sourceTree = "<group>"; };
 		09F65640174041010000486B /* ExtractLocalization.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ExtractLocalization.m; sourceTree = "<group>"; };
 		09F65642174041010000486B /* ExtractLocalization-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ExtractLocalization-Prefix.pch"; sourceTree = "<group>"; };
+		4C0279B41962E99900748E92 /* ExtractLocationView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ExtractLocationView.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,6 +78,7 @@
 				09A343C4174068E200A713EE /* RCXcode.h */,
 				09A343C5174068E200A713EE /* RCXcode.m */,
 				09F6563A174041010000486B /* Supporting Files */,
+				4C0279B41962E99900748E92 /* ExtractLocationView.xib */,
 			);
 			path = ExtractLocalization;
 			sourceTree = "<group>";
@@ -142,6 +145,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4C0279B51962E99900748E92 /* ExtractLocationView.xib in Resources */,
 				09F6563E174041010000486B /* InfoPlist.strings in Resources */,
 				09EC581817E3B6E1002261C4 /* icon.icns in Resources */,
 			);
