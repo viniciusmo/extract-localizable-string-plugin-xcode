@@ -1,7 +1,8 @@
 #import <AppKit/AppKit.h>
+#import "ExtractLocalizationWindowController.h"
 
 @interface ExtractLocalization : NSObject
 
-@property(assign) IBOutlet NSPopover * extractLocalizationView;
+@property(strong) ExtractLocalizationWindowController * extractLocationWindowController;
 
 @end

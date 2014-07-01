@@ -1,5 +1,6 @@
 #import "ExtractLocalization.h"
 #import "RCXcode.h"
+#import "ExtractLocalizationWindowController.h"
 
 static NSString *localizeRegexs[] = {
     @"NSLocalizedString\\s*\\(\\s*@\"(.*)\"\\s*,\\s*(.*)\\s*\\)",
@@ -25,7 +26,7 @@ static id sharedPlugin = nil;
 
 -(id)initWithBundle:(NSBundle *)bundle{
     if (self = [super init]) {
-        NSMenuItem *viewMenuItem = [[NSApp mainMenu] itemWithTitle:@"Edit"];
+        NSMenuItem *viewMenuItem = [[NSApp mainMenu] itemWithTitle:NSLocalizedString(@"Edit", @"Edit")];
         if (viewMenuItem) {
             [[viewMenuItem submenu] addItem:[NSMenuItem separatorItem]];
             NSMenuItem *sample = [[NSMenuItem alloc] initWithTitle:@"Extract Localization" action:@selector(extractLocalization) keyEquivalent:@"e"];
@@ -33,8 +34,6 @@ static id sharedPlugin = nil;
             [sample setTarget:self];
             [[viewMenuItem submenu] addItem:sample];
         }
-        NSNib *nib = [[NSNib alloc] initWithNibNamed:@"ExtractLocalizationPopoverView" bundle:bundle];
-        [nib instantiateNibWithOwner:self topLevelObjects:nil];
     }
     return self;
 }
@@ -74,13 +73,10 @@ static id sharedPlugin = nil;
                                           withAttributedString:[[NSAttributedString alloc] initWithString:outputString]];
                 [textView didChangeText];
             }
-            
-            NSRect selectionRectOnScreen = [textView firstRectForCharacterRange:NSMakeRange(matchedRangeInLine.location+addedLength,1)];
-            NSRect selectionRectInWindow = [textView.window convertRectFromScreen:selectionRectOnScreen];
-            NSRect selectionRectInView = [textView convertRect:selectionRectInWindow fromView:nil];
-            [self.extractLocalizationView showRelativeToRect:selectionRectInView ofView:textView preferredEdge:NSMinYEdge];
         }
     }
+    _extractLocationWindowController =  [[ExtractLocalizationWindowController alloc]initWithWindowNibName:@"ExtractLocalizationWindowController"];
+    [_extractLocationWindowController showWindow:nil];
 }
 
 - (BOOL)isRange:(NSRange)range inSkipedRanges:(NSArray *)ranges {

@@ -15,6 +15,8 @@
 		09F65641174041010000486B /* ExtractLocalization.m in Sources */ = {isa = PBXBuildFile; fileRef = 09F65640174041010000486B /* ExtractLocalization.m */; };
 		4C0279BE1962EDF800748E92 /* ExtractLocalizationPopoverView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C0279BD1962EDF800748E92 /* ExtractLocalizationPopoverView.xib */; };
 		4C0279C11962EE5900748E92 /* ExtractLocalizationPopoverView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C0279C01962EE5900748E92 /* ExtractLocalizationPopoverView.m */; };
+		4C7E6EFB19635D0000E47BD2 /* ExtractLocalizationWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C7E6EF919635D0000E47BD2 /* ExtractLocalizationWindowController.m */; };
+		4C7E6EFC19635D0000E47BD2 /* ExtractLocalizationWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C7E6EFA19635D0000E47BD2 /* ExtractLocalizationWindowController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +34,9 @@
 		4C0279BD1962EDF800748E92 /* ExtractLocalizationPopoverView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ExtractLocalizationPopoverView.xib; sourceTree = "<group>"; };
 		4C0279BF1962EE5900748E92 /* ExtractLocalizationPopoverView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExtractLocalizationPopoverView.h; sourceTree = "<group>"; };
 		4C0279C01962EE5900748E92 /* ExtractLocalizationPopoverView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExtractLocalizationPopoverView.m; sourceTree = "<group>"; };
+		4C7E6EF819635D0000E47BD2 /* ExtractLocalizationWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExtractLocalizationWindowController.h; sourceTree = "<group>"; };
+		4C7E6EF919635D0000E47BD2 /* ExtractLocalizationWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExtractLocalizationWindowController.m; sourceTree = "<group>"; };
+		4C7E6EFA19635D0000E47BD2 /* ExtractLocalizationWindowController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ExtractLocalizationWindowController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,6 +89,9 @@
 				4C0279BD1962EDF800748E92 /* ExtractLocalizationPopoverView.xib */,
 				4C0279BF1962EE5900748E92 /* ExtractLocalizationPopoverView.h */,
 				4C0279C01962EE5900748E92 /* ExtractLocalizationPopoverView.m */,
+				4C7E6EF819635D0000E47BD2 /* ExtractLocalizationWindowController.h */,
+				4C7E6EF919635D0000E47BD2 /* ExtractLocalizationWindowController.m */,
+				4C7E6EFA19635D0000E47BD2 /* ExtractLocalizationWindowController.xib */,
 			);
 			path = ExtractLocalization;
 			sourceTree = "<group>";
@@ -150,6 +158,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4C7E6EFC19635D0000E47BD2 /* ExtractLocalizationWindowController.xib in Resources */,
 				4C0279BE1962EDF800748E92 /* ExtractLocalizationPopoverView.xib in Resources */,
 				09F6563E174041010000486B /* InfoPlist.strings in Resources */,
 				09EC581817E3B6E1002261C4 /* icon.icns in Resources */,
@@ -163,6 +172,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4C7E6EFB19635D0000E47BD2 /* ExtractLocalizationWindowController.m in Sources */,
 				4C0279C11962EE5900748E92 /* ExtractLocalizationPopoverView.m in Sources */,
 				09F65641174041010000486B /* ExtractLocalization.m in Sources */,
 				09A343C6174068E600A713EE /* RCXcode.m in Sources */,
