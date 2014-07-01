@@ -2,4 +2,6 @@
 
 @interface ExtractLocalization : NSObject
 
+@property(weak) IBOutlet NSPopover * extractLocalizationView;
+
 @end

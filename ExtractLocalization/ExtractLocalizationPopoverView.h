@@ -8,6 +8,6 @@
 
 #import <Cocoa/Cocoa.h>
 
-@interface ExtractLocationPopoverView : NSView
+@interface ExtractLocalizationPopoverView : NSView
 
 @end

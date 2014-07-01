@@ -13,10 +13,8 @@
 		09F65638174041010000486B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 09F65637174041010000486B /* Foundation.framework */; };
 		09F6563E174041010000486B /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 09F6563C174041010000486B /* InfoPlist.strings */; };
 		09F65641174041010000486B /* ExtractLocalization.m in Sources */ = {isa = PBXBuildFile; fileRef = 09F65640174041010000486B /* ExtractLocalization.m */; };
-		4C0279BB1962ECCF00748E92 /* PopoverContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C0279B91962ECCF00748E92 /* PopoverContentView.m */; };
-		4C0279BC1962ECCF00748E92 /* Popover.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C0279BA1962ECCF00748E92 /* Popover.xib */; };
-		4C0279BE1962EDF800748E92 /* ExtractLocationPopoverView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C0279BD1962EDF800748E92 /* ExtractLocationPopoverView.xib */; };
-		4C0279C11962EE5900748E92 /* ExtractLocationPopoverView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C0279C01962EE5900748E92 /* ExtractLocationPopoverView.m */; };
+		4C0279BE1962EDF800748E92 /* ExtractLocalizationPopoverView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C0279BD1962EDF800748E92 /* ExtractLocalizationPopoverView.xib */; };
+		4C0279C11962EE5900748E92 /* ExtractLocalizationPopoverView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C0279C01962EE5900748E92 /* ExtractLocalizationPopoverView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,12 +29,9 @@
 		09F6563F174041010000486B /* ExtractLocalization.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ExtractLocalization.h; sourceTree = "<group>"; };
 		09F65640174041010000486B /* ExtractLocalization.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ExtractLocalization.m; sourceTree = "<group>"; };
 		09F65642174041010000486B /* ExtractLocalization-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ExtractLocalization-Prefix.pch"; sourceTree = "<group>"; };
-		4C0279B81962ECCF00748E92 /* PopoverContentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PopoverContentView.h; sourceTree = "<group>"; };
-		4C0279B91962ECCF00748E92 /* PopoverContentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PopoverContentView.m; sourceTree = "<group>"; };
-		4C0279BA1962ECCF00748E92 /* Popover.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Popover.xib; sourceTree = "<group>"; };
-		4C0279BD1962EDF800748E92 /* ExtractLocationPopoverView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ExtractLocationPopoverView.xib; sourceTree = "<group>"; };
-		4C0279BF1962EE5900748E92 /* ExtractLocationPopoverView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExtractLocationPopoverView.h; sourceTree = "<group>"; };
-		4C0279C01962EE5900748E92 /* ExtractLocationPopoverView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExtractLocationPopoverView.m; sourceTree = "<group>"; };
+		4C0279BD1962EDF800748E92 /* ExtractLocalizationPopoverView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ExtractLocalizationPopoverView.xib; sourceTree = "<group>"; };
+		4C0279BF1962EE5900748E92 /* ExtractLocalizationPopoverView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExtractLocalizationPopoverView.h; sourceTree = "<group>"; };
+		4C0279C01962EE5900748E92 /* ExtractLocalizationPopoverView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExtractLocalizationPopoverView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,17 +76,14 @@
 		09F65639174041010000486B /* ExtractLocalization */ = {
 			isa = PBXGroup;
 			children = (
-				4C0279B81962ECCF00748E92 /* PopoverContentView.h */,
-				4C0279B91962ECCF00748E92 /* PopoverContentView.m */,
-				4C0279BA1962ECCF00748E92 /* Popover.xib */,
 				09F6563F174041010000486B /* ExtractLocalization.h */,
 				09F65640174041010000486B /* ExtractLocalization.m */,
 				09A343C4174068E200A713EE /* RCXcode.h */,
 				09A343C5174068E200A713EE /* RCXcode.m */,
 				09F6563A174041010000486B /* Supporting Files */,
-				4C0279BD1962EDF800748E92 /* ExtractLocationPopoverView.xib */,
-				4C0279BF1962EE5900748E92 /* ExtractLocationPopoverView.h */,
-				4C0279C01962EE5900748E92 /* ExtractLocationPopoverView.m */,
+				4C0279BD1962EDF800748E92 /* ExtractLocalizationPopoverView.xib */,
+				4C0279BF1962EE5900748E92 /* ExtractLocalizationPopoverView.h */,
+				4C0279C01962EE5900748E92 /* ExtractLocalizationPopoverView.m */,
 			);
 			path = ExtractLocalization;
 			sourceTree = "<group>";
@@ -158,10 +150,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4C0279BE1962EDF800748E92 /* ExtractLocationPopoverView.xib in Resources */,
+				4C0279BE1962EDF800748E92 /* ExtractLocalizationPopoverView.xib in Resources */,
 				09F6563E174041010000486B /* InfoPlist.strings in Resources */,
 				09EC581817E3B6E1002261C4 /* icon.icns in Resources */,
-				4C0279BC1962ECCF00748E92 /* Popover.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -172,8 +163,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4C0279BB1962ECCF00748E92 /* PopoverContentView.m in Sources */,
-				4C0279C11962EE5900748E92 /* ExtractLocationPopoverView.m in Sources */,
+				4C0279C11962EE5900748E92 /* ExtractLocalizationPopoverView.m in Sources */,
 				09F65641174041010000486B /* ExtractLocalization.m in Sources */,
 				09A343C6174068E600A713EE /* RCXcode.m in Sources */,
 			);

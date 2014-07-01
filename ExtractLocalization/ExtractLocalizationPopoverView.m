@@ -6,9 +6,9 @@
 //  Copyright (c) 2014 nanaimostudio. All rights reserved.
 //
 
-#import "ExtractLocationPopoverView.h"
+#import "ExtractLocalizationPopoverView.h"
 
-@implementation ExtractLocationPopoverView
+@implementation ExtractLocalizationPopoverView
 
 - (id)initWithFrame:(NSRect)frame
 {

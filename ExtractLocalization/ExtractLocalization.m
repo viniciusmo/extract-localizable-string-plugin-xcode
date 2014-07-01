@@ -8,10 +8,13 @@ static NSString *localizeRegexs[] = {
     @"NSLocalizedStringFromTableInBundle\\s*\\(\\s*@\"(.*)\"\\s*,\\s*(.*)\\s*,\\s*(.*)\\s*,\\s*(.*)\\s*\\)",
     @"NSLocalizedStringWithDefaultValue\\s*\\(\\s*@\"(.*)\"\\s*,\\s*(.*)\\s*,\\s*(.*)\\s*,\\s*(.*)\\s*,\\s*(.*)\\s*\\)"
 };
-static NSString *stringRegexs = @"@\"[^\"]*\"";
-@implementation ExtractLocalization
-static id sharedPlugin = nil;
 
+static NSString *stringRegexs = @"@\"[^\"]*\"";
+
+
+@implementation ExtractLocalization
+
+static id sharedPlugin = nil;
 
 + (void)pluginDidLoad:(NSBundle *)plugin {
     static dispatch_once_t onceToken;
