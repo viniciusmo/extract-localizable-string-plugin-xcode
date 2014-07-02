@@ -26,13 +26,13 @@ static id sharedPlugin = nil;
 
 -(id)initWithBundle:(NSBundle *)bundle{
     if (self = [super init]) {
-        NSMenuItem *viewMenuItem = [[NSApp mainMenu] itemWithTitle:NSLocalizedString(@"Edit", @"Edit")];
-        if (viewMenuItem) {
-            [[viewMenuItem submenu] addItem:[NSMenuItem separatorItem]];
-            NSMenuItem *sample = [[NSMenuItem alloc] initWithTitle:@"Extract Localization" action:@selector(extractLocalization) keyEquivalent:@"e"];
-            [sample setKeyEquivalentModifierMask:NSShiftKeyMask | NSAlternateKeyMask];
-            [sample setTarget:self];
-            [[viewMenuItem submenu] addItem:sample];
+        NSMenuItem *editMenu = [[NSApp mainMenu] itemWithTitle:NSLocalizedString(@"Edit", @"Edit")];
+        if (editMenu) {
+            NSMenuItem *refactorMenu = [[editMenu submenu] itemWithTitle:NSLocalizedString(@"Refactor", @"Refactor")];
+            NSMenuItem *extractLocalizationStringMenu = [[NSMenuItem alloc] initWithTitle:@"Extract Localization String" action:@selector(extractLocalization) keyEquivalent:@"e"];
+            [extractLocalizationStringMenu setKeyEquivalentModifierMask:NSShiftKeyMask | NSAlternateKeyMask];
+            [extractLocalizationStringMenu setTarget:self];
+            [[refactorMenu submenu]addItem:extractLocalizationStringMenu];
         }
     }
     return self;
