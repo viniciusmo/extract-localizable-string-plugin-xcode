@@ -73,10 +73,11 @@ static id sharedPlugin = nil;
                                           withAttributedString:[[NSAttributedString alloc] initWithString:outputString]];
                 [textView didChangeText];
             }
+             _extractLocationWindowController =  [[ExtractLocalizationWindowController alloc]initWithWindowNibName:@"ExtractLocalizationWindowController"];
+            _extractLocationWindowController.txtValue.stringValue = string;
+            [_extractLocationWindowController showWindow:nil];
         }
     }
-    _extractLocationWindowController =  [[ExtractLocalizationWindowController alloc]initWithWindowNibName:@"ExtractLocalizationWindowController"];
-    [_extractLocationWindowController showWindow:nil];
 }
 
 - (BOOL)isRange:(NSRange)range inSkipedRanges:(NSArray *)ranges {
