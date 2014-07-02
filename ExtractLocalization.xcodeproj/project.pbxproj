@@ -7,31 +7,47 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		09A343C6174068E600A713EE /* RCXcode.m in Sources */ = {isa = PBXBuildFile; fileRef = 09A343C5174068E200A713EE /* RCXcode.m */; };
 		09EC581817E3B6E1002261C4 /* icon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 09EC581717E3B6E1002261C4 /* icon.icns */; };
 		09F65636174041010000486B /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 09F65635174041010000486B /* AppKit.framework */; };
 		09F65638174041010000486B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 09F65637174041010000486B /* Foundation.framework */; };
 		09F6563E174041010000486B /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 09F6563C174041010000486B /* InfoPlist.strings */; };
-		09F65641174041010000486B /* ExtractLocalization.m in Sources */ = {isa = PBXBuildFile; fileRef = 09F65640174041010000486B /* ExtractLocalization.m */; };
-		4C7E6EFB19635D0000E47BD2 /* ExtractLocalizationWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C7E6EF919635D0000E47BD2 /* ExtractLocalizationWindowController.m */; };
-		4C7E6EFC19635D0000E47BD2 /* ExtractLocalizationWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C7E6EFA19635D0000E47BD2 /* ExtractLocalizationWindowController.xib */; };
+		4C484A961964B7F20017DAD9 /* IDEFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C484A951964B7F20017DAD9 /* IDEFoundation.framework */; };
+		4C484AA51964B8500017DAD9 /* IDEIndex+Lin.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C484A9B1964B8500017DAD9 /* IDEIndex+Lin.m */; };
+		4C484AA61964B8500017DAD9 /* IDEWorkspace+Lin.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C484A9F1964B8500017DAD9 /* IDEWorkspace+Lin.m */; };
+		4C484AA71964B8500017DAD9 /* MethodSwizzle.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C484AA21964B8500017DAD9 /* MethodSwizzle.m */; };
+		4C484AA81964B8500017DAD9 /* RCXcode.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C484AA41964B8500017DAD9 /* RCXcode.m */; };
+		4C484AB21964B8D60017DAD9 /* ExtractLocalizationWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C484AAC1964B8D60017DAD9 /* ExtractLocalizationWindowController.m */; };
+		4C484AB31964B8D60017DAD9 /* ExtractLocalization.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C484AAF1964B8D60017DAD9 /* ExtractLocalization.m */; };
+		4C484AB41964B8D60017DAD9 /* ExtractLocalizationWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C484AB11964B8D60017DAD9 /* ExtractLocalizationWindowController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		09A343C4174068E200A713EE /* RCXcode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RCXcode.h; sourceTree = "<group>"; };
-		09A343C5174068E200A713EE /* RCXcode.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RCXcode.m; sourceTree = "<group>"; };
 		09EC581717E3B6E1002261C4 /* icon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = icon.icns; sourceTree = "<group>"; };
 		09F65632174041010000486B /* ExtractLocalization.xcplugin */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ExtractLocalization.xcplugin; sourceTree = BUILT_PRODUCTS_DIR; };
 		09F65635174041010000486B /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
 		09F65637174041010000486B /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		09F6563B174041010000486B /* ExtractLocalization-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ExtractLocalization-Info.plist"; sourceTree = "<group>"; };
 		09F6563D174041010000486B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		09F6563F174041010000486B /* ExtractLocalization.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ExtractLocalization.h; sourceTree = "<group>"; };
-		09F65640174041010000486B /* ExtractLocalization.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ExtractLocalization.m; sourceTree = "<group>"; };
 		09F65642174041010000486B /* ExtractLocalization-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ExtractLocalization-Prefix.pch"; sourceTree = "<group>"; };
-		4C7E6EF819635D0000E47BD2 /* ExtractLocalizationWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExtractLocalizationWindowController.h; sourceTree = "<group>"; };
-		4C7E6EF919635D0000E47BD2 /* ExtractLocalizationWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExtractLocalizationWindowController.m; sourceTree = "<group>"; };
-		4C7E6EFA19635D0000E47BD2 /* ExtractLocalizationWindowController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ExtractLocalizationWindowController.xib; sourceTree = "<group>"; };
+		4C484A951964B7F20017DAD9 /* IDEFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = IDEFoundation.framework; sourceTree = "<group>"; };
+		4C484A981964B8500017DAD9 /* DVTFilePath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVTFilePath.h; sourceTree = "<group>"; };
+		4C484A991964B8500017DAD9 /* IDEEditorDocument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDEEditorDocument.h; sourceTree = "<group>"; };
+		4C484A9A1964B8500017DAD9 /* IDEIndex+Lin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "IDEIndex+Lin.h"; sourceTree = "<group>"; };
+		4C484A9B1964B8500017DAD9 /* IDEIndex+Lin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "IDEIndex+Lin.m"; sourceTree = "<group>"; };
+		4C484A9C1964B8500017DAD9 /* IDEIndex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDEIndex.h; sourceTree = "<group>"; };
+		4C484A9D1964B8500017DAD9 /* IDEIndexCollection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDEIndexCollection.h; sourceTree = "<group>"; };
+		4C484A9E1964B8500017DAD9 /* IDEWorkspace+Lin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "IDEWorkspace+Lin.h"; sourceTree = "<group>"; };
+		4C484A9F1964B8500017DAD9 /* IDEWorkspace+Lin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "IDEWorkspace+Lin.m"; sourceTree = "<group>"; };
+		4C484AA01964B8500017DAD9 /* IDEWorkspace.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDEWorkspace.h; sourceTree = "<group>"; };
+		4C484AA11964B8500017DAD9 /* MethodSwizzle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MethodSwizzle.h; sourceTree = "<group>"; };
+		4C484AA21964B8500017DAD9 /* MethodSwizzle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MethodSwizzle.m; sourceTree = "<group>"; };
+		4C484AA31964B8500017DAD9 /* RCXcode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCXcode.h; sourceTree = "<group>"; };
+		4C484AA41964B8500017DAD9 /* RCXcode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCXcode.m; sourceTree = "<group>"; };
+		4C484AAB1964B8D60017DAD9 /* ExtractLocalizationWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExtractLocalizationWindowController.h; sourceTree = "<group>"; };
+		4C484AAC1964B8D60017DAD9 /* ExtractLocalizationWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExtractLocalizationWindowController.m; sourceTree = "<group>"; };
+		4C484AAE1964B8D60017DAD9 /* ExtractLocalization.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExtractLocalization.h; sourceTree = "<group>"; };
+		4C484AAF1964B8D60017DAD9 /* ExtractLocalization.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExtractLocalization.m; sourceTree = "<group>"; };
+		4C484AB11964B8D60017DAD9 /* ExtractLocalizationWindowController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ExtractLocalizationWindowController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -39,6 +55,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4C484A961964B7F20017DAD9 /* IDEFoundation.framework in Frameworks */,
 				09F65636174041010000486B /* AppKit.framework in Frameworks */,
 				09F65638174041010000486B /* Foundation.framework in Frameworks */,
 			);
@@ -67,6 +84,7 @@
 		09F65634174041010000486B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				4C484A951964B7F20017DAD9 /* IDEFoundation.framework */,
 				09F65635174041010000486B /* AppKit.framework */,
 				09F65637174041010000486B /* Foundation.framework */,
 			);
@@ -76,14 +94,9 @@
 		09F65639174041010000486B /* ExtractLocalization */ = {
 			isa = PBXGroup;
 			children = (
-				09F6563F174041010000486B /* ExtractLocalization.h */,
-				09F65640174041010000486B /* ExtractLocalization.m */,
-				09A343C4174068E200A713EE /* RCXcode.h */,
-				09A343C5174068E200A713EE /* RCXcode.m */,
+				4C484AA91964B8D60017DAD9 /* Plugin */,
+				4C484A971964B8500017DAD9 /* Xcode */,
 				09F6563A174041010000486B /* Supporting Files */,
-				4C7E6EF819635D0000E47BD2 /* ExtractLocalizationWindowController.h */,
-				4C7E6EF919635D0000E47BD2 /* ExtractLocalizationWindowController.m */,
-				4C7E6EFA19635D0000E47BD2 /* ExtractLocalizationWindowController.xib */,
 			);
 			path = ExtractLocalization;
 			sourceTree = "<group>";
@@ -97,6 +110,62 @@
 				09F65642174041010000486B /* ExtractLocalization-Prefix.pch */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		4C484A971964B8500017DAD9 /* Xcode */ = {
+			isa = PBXGroup;
+			children = (
+				4C484A981964B8500017DAD9 /* DVTFilePath.h */,
+				4C484A991964B8500017DAD9 /* IDEEditorDocument.h */,
+				4C484A9A1964B8500017DAD9 /* IDEIndex+Lin.h */,
+				4C484A9B1964B8500017DAD9 /* IDEIndex+Lin.m */,
+				4C484A9C1964B8500017DAD9 /* IDEIndex.h */,
+				4C484A9D1964B8500017DAD9 /* IDEIndexCollection.h */,
+				4C484A9E1964B8500017DAD9 /* IDEWorkspace+Lin.h */,
+				4C484A9F1964B8500017DAD9 /* IDEWorkspace+Lin.m */,
+				4C484AA01964B8500017DAD9 /* IDEWorkspace.h */,
+				4C484AA11964B8500017DAD9 /* MethodSwizzle.h */,
+				4C484AA21964B8500017DAD9 /* MethodSwizzle.m */,
+				4C484AA31964B8500017DAD9 /* RCXcode.h */,
+				4C484AA41964B8500017DAD9 /* RCXcode.m */,
+			);
+			path = Xcode;
+			sourceTree = "<group>";
+		};
+		4C484AA91964B8D60017DAD9 /* Plugin */ = {
+			isa = PBXGroup;
+			children = (
+				4C484AAA1964B8D60017DAD9 /* Controllers */,
+				4C484AAD1964B8D60017DAD9 /* Principal Class */,
+				4C484AB01964B8D60017DAD9 /* Views */,
+			);
+			path = Plugin;
+			sourceTree = "<group>";
+		};
+		4C484AAA1964B8D60017DAD9 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				4C484AAB1964B8D60017DAD9 /* ExtractLocalizationWindowController.h */,
+				4C484AAC1964B8D60017DAD9 /* ExtractLocalizationWindowController.m */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		4C484AAD1964B8D60017DAD9 /* Principal Class */ = {
+			isa = PBXGroup;
+			children = (
+				4C484AAE1964B8D60017DAD9 /* ExtractLocalization.h */,
+				4C484AAF1964B8D60017DAD9 /* ExtractLocalization.m */,
+			);
+			path = "Principal Class";
+			sourceTree = "<group>";
+		};
+		4C484AB01964B8D60017DAD9 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				4C484AB11964B8D60017DAD9 /* ExtractLocalizationWindowController.xib */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -150,8 +219,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4C7E6EFC19635D0000E47BD2 /* ExtractLocalizationWindowController.xib in Resources */,
 				09F6563E174041010000486B /* InfoPlist.strings in Resources */,
+				4C484AB41964B8D60017DAD9 /* ExtractLocalizationWindowController.xib in Resources */,
 				09EC581817E3B6E1002261C4 /* icon.icns in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -163,9 +232,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4C7E6EFB19635D0000E47BD2 /* ExtractLocalizationWindowController.m in Sources */,
-				09F65641174041010000486B /* ExtractLocalization.m in Sources */,
-				09A343C6174068E600A713EE /* RCXcode.m in Sources */,
+				4C484AB21964B8D60017DAD9 /* ExtractLocalizationWindowController.m in Sources */,
+				4C484AA81964B8500017DAD9 /* RCXcode.m in Sources */,
+				4C484AA71964B8500017DAD9 /* MethodSwizzle.m in Sources */,
+				4C484AA61964B8500017DAD9 /* IDEWorkspace+Lin.m in Sources */,
+				4C484AB31964B8D60017DAD9 /* ExtractLocalization.m in Sources */,
+				4C484AA51964B8500017DAD9 /* IDEIndex+Lin.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -247,6 +319,10 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				DEPLOYMENT_LOCATION = YES;
 				DSTROOT = "$(HOME)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				GCC_ENABLE_OBJC_GC = unsupported;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ExtractLocalization/ExtractLocalization-Prefix.pch";
@@ -265,6 +341,10 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				DEPLOYMENT_LOCATION = YES;
 				DSTROOT = "$(HOME)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				GCC_ENABLE_OBJC_GC = unsupported;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ExtractLocalization/ExtractLocalization-Prefix.pch";
