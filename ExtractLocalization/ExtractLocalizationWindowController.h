@@ -1,13 +1,10 @@
-//
-//  ExtractLocalizationWindowController.h
-//  ExtractLocalization
-//
-//  Created by viniciusmo on 7/1/14.
-//  Copyright (c) 2014 viniciusmo. All rights reserved.
-//
-
 #import <Cocoa/Cocoa.h>
 
 @interface ExtractLocalizationWindowController : NSWindowController
+
+@property (weak) IBOutlet NSTextField * txtKey;
+@property (weak) IBOutlet NSTextField * txtValue;
+
+-(IBAction)doClickOK:(id)sender;
 
 @end
