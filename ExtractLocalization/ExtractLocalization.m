@@ -75,7 +75,7 @@ static id sharedPlugin = nil;
             }
         }
     }
-    _extractLocationWindowController =  [[ExtractLocalizationWindowController alloc]initWithWindowNibName:@"ExtractLocalizationWindowController"];
+    _extractLocationWindowController =  [[ExtractLocalizationWindowController alloc]initWithWindowNibName:NSLocalizedString(@"ExtractLocalizationWindowController", @"ExtractLocalizationWindowController")];
     [_extractLocationWindowController showWindow:nil];
 }
 
