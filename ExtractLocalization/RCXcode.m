@@ -100,7 +100,6 @@
             IDEFileReference *fileReference = representedObject;
             folderURL = [fileReference.resolvedFilePath.fileURL URLByDeletingLastPathComponent];
         } else if ([navigableItem isKindOfClass:NSClassFromString(@"IDEKeyDrivenNavigableItem")]) {
-            // WORKSPACE (root: Xcode project or workspace)
             IDEWorkspace *workspace = representedObject;
             folderURL = [workspace.representingFilePath.fileURL URLByDeletingLastPathComponent];
         }

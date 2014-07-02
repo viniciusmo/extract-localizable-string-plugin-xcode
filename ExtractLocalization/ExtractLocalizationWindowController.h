@@ -4,13 +4,12 @@
 
 @property (weak) IBOutlet NSTextField * txtKey;
 @property (weak) IBOutlet NSTextField * txtValue;
-@property (copy) void (^extractLocalizationDidConfirm)();
+@property (copy) void (^extractLocalizationDidConfirm)(NSString * key);
 
 -(IBAction)doClickOK:(id)sender;
 
 -(void)showWindow;
 
--(void)fillFieldsWith:(NSString *) value
-               andKey:(NSString *) key;
+-(void)fillFieldValue:(NSString *) value;
 
 @end

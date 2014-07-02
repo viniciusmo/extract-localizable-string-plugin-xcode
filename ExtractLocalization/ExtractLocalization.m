@@ -57,7 +57,7 @@ static id sharedPlugin = nil;
         
         NSRegularExpression *regex = [[NSRegularExpression alloc] initWithPattern:stringRegexs options:NSRegularExpressionCaseInsensitive error:nil];
         NSArray *matches = [regex matchesInString:line options:0 range:NSMakeRange(0, [line length])];
-        NSUInteger addedLength = 0;
+        __block NSUInteger addedLength = 0;
         for (int i = 0; i < [matches count]; i++) {
             NSTextCheckingResult *result = [matches objectAtIndex:i];
             NSRange matchedRangeInLine = result.range;
@@ -66,21 +66,23 @@ static id sharedPlugin = nil;
                 continue;
             }
             NSString *string = [line substringWithRange:matchedRangeInLine];
-            NSString *outputString = [NSString stringWithFormat:NSLocalizedString(@"NSLocalizedString(%@, %@)", @"NSLocalizedString(%@, %@)"), string, string];
-            addedLength = addedLength + outputString.length - string.length;
              _extractLocationWindowController =  [[ExtractLocalizationWindowController alloc]initWithWindowNibName:@"ExtractLocalizationWindowController"];
             [_extractLocationWindowController showWindow];
-            _extractLocationWindowController.extractLocalizationDidConfirm = ^() {
+            _extractLocationWindowController.extractLocalizationDidConfirm = ^(NSString * key) {
+                NSString *outputString = [NSString stringWithFormat:@"NSLocalizedString(@\"%@\",nil)", key];
+                addedLength = addedLength + outputString.length - string.length;
                 if ([textView shouldChangeTextInRange:matchedRangeInDocument replacementString:outputString]) {
                     [textView.textStorage replaceCharactersInRange:matchedRangeInDocument
                                               withAttributedString:[[NSAttributedString alloc] initWithString:outputString]];
                     [textView didChangeText];
+                    
                 }
             };
-            [_extractLocationWindowController fillFieldsWith:string andKey:string];
+            [_extractLocationWindowController fillFieldValue:string];
         }
     }
 }
+
 
 - (BOOL)isRange:(NSRange)range inSkipedRanges:(NSArray *)ranges {
     for (int i = 0; i < [ranges count]; i++) {
