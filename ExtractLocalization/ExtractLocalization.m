@@ -66,16 +66,18 @@ static id sharedPlugin = nil;
                 continue;
             }
             NSString *string = [line substringWithRange:matchedRangeInLine];
-            NSString *outputString = [NSString stringWithFormat:@"NSLocalizedString(%@, %@)", string, string];
+            NSString *outputString = [NSString stringWithFormat:NSLocalizedString(@"NSLocalizedString(%@, %@)", @"NSLocalizedString(%@, %@)"), string, string];
             addedLength = addedLength + outputString.length - string.length;
-            if ([textView shouldChangeTextInRange:matchedRangeInDocument replacementString:outputString]) {
-                [textView.textStorage replaceCharactersInRange:matchedRangeInDocument
-                                          withAttributedString:[[NSAttributedString alloc] initWithString:outputString]];
-                [textView didChangeText];
-            }
              _extractLocationWindowController =  [[ExtractLocalizationWindowController alloc]initWithWindowNibName:@"ExtractLocalizationWindowController"];
-            _extractLocationWindowController.txtValue.stringValue = string;
-            [_extractLocationWindowController showWindow:nil];
+            [_extractLocationWindowController showWindow];
+            _extractLocationWindowController.extractLocalizationDidConfirm = ^() {
+                if ([textView shouldChangeTextInRange:matchedRangeInDocument replacementString:outputString]) {
+                    [textView.textStorage replaceCharactersInRange:matchedRangeInDocument
+                                              withAttributedString:[[NSAttributedString alloc] initWithString:outputString]];
+                    [textView didChangeText];
+                }
+            };
+            [_extractLocationWindowController fillFieldsWith:string andKey:string];
         }
     }
 }
