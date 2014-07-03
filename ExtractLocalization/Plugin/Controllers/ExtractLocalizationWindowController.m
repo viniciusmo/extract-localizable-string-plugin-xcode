@@ -8,8 +8,8 @@
                               andValue:_txtValue.stringValue];
     _extractLocalizationDidConfirm(item);
     [[self window ]orderOut:self];
+    
 }
-
 -(void)showWindow{
     [self showWindow:nil];
 }
