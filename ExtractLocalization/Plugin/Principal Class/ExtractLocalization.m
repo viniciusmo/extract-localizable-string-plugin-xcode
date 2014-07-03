@@ -1,6 +1,8 @@
 #import "ExtractLocalization.h"
 #import "RCXcode.h"
 #import "ExtractLocalizationWindowController.h"
+#import "NSView+Dump.h"
+#import "EditorLocalizable.h"
 
 static NSString *localizeRegexs[] = {
     @"NSLocalizedString\\s*\\(\\s*@\"(.*)\"\\s*,\\s*(.*)\\s*\\)",
@@ -11,7 +13,6 @@ static NSString *localizeRegexs[] = {
 };
 
 static NSString *stringRegexs = @"@\"[^\"]*\"";
-
 
 @implementation ExtractLocalization
 
@@ -33,6 +34,7 @@ static id sharedPlugin = nil;
             [extractLocalizationStringMenu setKeyEquivalentModifierMask:NSShiftKeyMask | NSAlternateKeyMask];
             [extractLocalizationStringMenu setTarget:self];
             [[refactorMenu submenu]addItem:extractLocalizationStringMenu];
+
         }
     }
     return self;
@@ -45,7 +47,9 @@ static id sharedPlugin = nil;
     if (!document || !textView) {
         return;
     }
-    
+    self.defaultLocalizableFilePath = [EditorLocalizable defaultPathLocalizablePath];
+    __strong ExtractLocalization * strongSelf = self;
+
     NSArray *selectedRanges = [textView selectedRanges];
     if ([selectedRanges count] > 0) {
         NSRange range = [[selectedRanges objectAtIndex:0] rangeValue];
@@ -68,14 +72,14 @@ static id sharedPlugin = nil;
             NSString *string = [line substringWithRange:matchedRangeInLine];
              _extractLocationWindowController =  [[ExtractLocalizationWindowController alloc]initWithWindowNibName:@"ExtractLocalizationWindowController"];
             [_extractLocationWindowController showWindow];
-            _extractLocationWindowController.extractLocalizationDidConfirm = ^(NSString * key) {
-                NSString *outputString = [NSString stringWithFormat:@"NSLocalizedString(@\"%@\",nil)", key];
+            _extractLocationWindowController.extractLocalizationDidConfirm = ^(ItemLocalizable * item) {
+                NSString *outputString = [NSString stringWithFormat:@"NSLocalizedString(@\"%@\",nil)", item.key];
                 addedLength = addedLength + outputString.length - string.length;
                 if ([textView shouldChangeTextInRange:matchedRangeInDocument replacementString:outputString]) {
                     [textView.textStorage replaceCharactersInRange:matchedRangeInDocument
                                               withAttributedString:[[NSAttributedString alloc] initWithString:outputString]];
                     [textView didChangeText];
-                    
+                    [EditorLocalizable saveItemLocalizable:item toPath:strongSelf.defaultLocalizableFilePath];
                 }
             };
             [_extractLocationWindowController fillFieldValue:string];

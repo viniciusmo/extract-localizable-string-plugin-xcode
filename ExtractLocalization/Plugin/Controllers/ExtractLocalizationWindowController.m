@@ -3,7 +3,10 @@
 @implementation ExtractLocalizationWindowController
 
 -(IBAction)doClickOK:(id)sender{
-    _extractLocalizationDidConfirm(_txtKey.stringValue);
+    ItemLocalizable * item = [[ItemLocalizable alloc]
+                              initWithKey:_txtKey.stringValue
+                              andValue:_txtValue.stringValue];
+    _extractLocalizationDidConfirm(item);
     [[self window ]orderOut:self];
 }
 

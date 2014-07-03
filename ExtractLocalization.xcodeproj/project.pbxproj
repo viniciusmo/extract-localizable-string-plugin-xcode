@@ -11,14 +11,14 @@
 		09F65636174041010000486B /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 09F65635174041010000486B /* AppKit.framework */; };
 		09F65638174041010000486B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 09F65637174041010000486B /* Foundation.framework */; };
 		09F6563E174041010000486B /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 09F6563C174041010000486B /* InfoPlist.strings */; };
+		4C47C5091965DC0800833711 /* ItemLocalizable.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C47C5081965DC0800833711 /* ItemLocalizable.m */; };
 		4C484A961964B7F20017DAD9 /* IDEFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C484A951964B7F20017DAD9 /* IDEFoundation.framework */; };
-		4C484AA51964B8500017DAD9 /* IDEIndex+Lin.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C484A9B1964B8500017DAD9 /* IDEIndex+Lin.m */; };
-		4C484AA61964B8500017DAD9 /* IDEWorkspace+Lin.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C484A9F1964B8500017DAD9 /* IDEWorkspace+Lin.m */; };
-		4C484AA71964B8500017DAD9 /* MethodSwizzle.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C484AA21964B8500017DAD9 /* MethodSwizzle.m */; };
 		4C484AA81964B8500017DAD9 /* RCXcode.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C484AA41964B8500017DAD9 /* RCXcode.m */; };
 		4C484AB21964B8D60017DAD9 /* ExtractLocalizationWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C484AAC1964B8D60017DAD9 /* ExtractLocalizationWindowController.m */; };
 		4C484AB31964B8D60017DAD9 /* ExtractLocalization.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C484AAF1964B8D60017DAD9 /* ExtractLocalization.m */; };
 		4C484AB41964B8D60017DAD9 /* ExtractLocalizationWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C484AB11964B8D60017DAD9 /* ExtractLocalizationWindowController.xib */; };
+		4C9F19831965941F0071A24E /* NSView+Dump.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C9F19821965941F0071A24E /* NSView+Dump.m */; };
+		4CEBACE11965D46C000F046D /* EditorLocalizable.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CEBACE01965D46C000F046D /* EditorLocalizable.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,18 +29,9 @@
 		09F6563B174041010000486B /* ExtractLocalization-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ExtractLocalization-Info.plist"; sourceTree = "<group>"; };
 		09F6563D174041010000486B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		09F65642174041010000486B /* ExtractLocalization-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ExtractLocalization-Prefix.pch"; sourceTree = "<group>"; };
+		4C47C5071965DC0800833711 /* ItemLocalizable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemLocalizable.h; sourceTree = "<group>"; };
+		4C47C5081965DC0800833711 /* ItemLocalizable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItemLocalizable.m; sourceTree = "<group>"; };
 		4C484A951964B7F20017DAD9 /* IDEFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = IDEFoundation.framework; sourceTree = "<group>"; };
-		4C484A981964B8500017DAD9 /* DVTFilePath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVTFilePath.h; sourceTree = "<group>"; };
-		4C484A991964B8500017DAD9 /* IDEEditorDocument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDEEditorDocument.h; sourceTree = "<group>"; };
-		4C484A9A1964B8500017DAD9 /* IDEIndex+Lin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "IDEIndex+Lin.h"; sourceTree = "<group>"; };
-		4C484A9B1964B8500017DAD9 /* IDEIndex+Lin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "IDEIndex+Lin.m"; sourceTree = "<group>"; };
-		4C484A9C1964B8500017DAD9 /* IDEIndex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDEIndex.h; sourceTree = "<group>"; };
-		4C484A9D1964B8500017DAD9 /* IDEIndexCollection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDEIndexCollection.h; sourceTree = "<group>"; };
-		4C484A9E1964B8500017DAD9 /* IDEWorkspace+Lin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "IDEWorkspace+Lin.h"; sourceTree = "<group>"; };
-		4C484A9F1964B8500017DAD9 /* IDEWorkspace+Lin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "IDEWorkspace+Lin.m"; sourceTree = "<group>"; };
-		4C484AA01964B8500017DAD9 /* IDEWorkspace.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDEWorkspace.h; sourceTree = "<group>"; };
-		4C484AA11964B8500017DAD9 /* MethodSwizzle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MethodSwizzle.h; sourceTree = "<group>"; };
-		4C484AA21964B8500017DAD9 /* MethodSwizzle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MethodSwizzle.m; sourceTree = "<group>"; };
 		4C484AA31964B8500017DAD9 /* RCXcode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCXcode.h; sourceTree = "<group>"; };
 		4C484AA41964B8500017DAD9 /* RCXcode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCXcode.m; sourceTree = "<group>"; };
 		4C484AAB1964B8D60017DAD9 /* ExtractLocalizationWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExtractLocalizationWindowController.h; sourceTree = "<group>"; };
@@ -48,6 +39,10 @@
 		4C484AAE1964B8D60017DAD9 /* ExtractLocalization.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExtractLocalization.h; sourceTree = "<group>"; };
 		4C484AAF1964B8D60017DAD9 /* ExtractLocalization.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExtractLocalization.m; sourceTree = "<group>"; };
 		4C484AB11964B8D60017DAD9 /* ExtractLocalizationWindowController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ExtractLocalizationWindowController.xib; sourceTree = "<group>"; };
+		4C9F19811965941F0071A24E /* NSView+Dump.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSView+Dump.h"; sourceTree = "<group>"; };
+		4C9F19821965941F0071A24E /* NSView+Dump.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSView+Dump.m"; sourceTree = "<group>"; };
+		4CEBACDF1965D46C000F046D /* EditorLocalizable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditorLocalizable.h; sourceTree = "<group>"; };
+		4CEBACE01965D46C000F046D /* EditorLocalizable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditorLocalizable.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -115,19 +110,14 @@
 		4C484A971964B8500017DAD9 /* Xcode */ = {
 			isa = PBXGroup;
 			children = (
-				4C484A981964B8500017DAD9 /* DVTFilePath.h */,
-				4C484A991964B8500017DAD9 /* IDEEditorDocument.h */,
-				4C484A9A1964B8500017DAD9 /* IDEIndex+Lin.h */,
-				4C484A9B1964B8500017DAD9 /* IDEIndex+Lin.m */,
-				4C484A9C1964B8500017DAD9 /* IDEIndex.h */,
-				4C484A9D1964B8500017DAD9 /* IDEIndexCollection.h */,
-				4C484A9E1964B8500017DAD9 /* IDEWorkspace+Lin.h */,
-				4C484A9F1964B8500017DAD9 /* IDEWorkspace+Lin.m */,
-				4C484AA01964B8500017DAD9 /* IDEWorkspace.h */,
-				4C484AA11964B8500017DAD9 /* MethodSwizzle.h */,
-				4C484AA21964B8500017DAD9 /* MethodSwizzle.m */,
 				4C484AA31964B8500017DAD9 /* RCXcode.h */,
 				4C484AA41964B8500017DAD9 /* RCXcode.m */,
+				4C9F19811965941F0071A24E /* NSView+Dump.h */,
+				4C9F19821965941F0071A24E /* NSView+Dump.m */,
+				4CEBACDF1965D46C000F046D /* EditorLocalizable.h */,
+				4CEBACE01965D46C000F046D /* EditorLocalizable.m */,
+				4C47C5071965DC0800833711 /* ItemLocalizable.h */,
+				4C47C5081965DC0800833711 /* ItemLocalizable.m */,
 			);
 			path = Xcode;
 			sourceTree = "<group>";
@@ -234,10 +224,10 @@
 			files = (
 				4C484AB21964B8D60017DAD9 /* ExtractLocalizationWindowController.m in Sources */,
 				4C484AA81964B8500017DAD9 /* RCXcode.m in Sources */,
-				4C484AA71964B8500017DAD9 /* MethodSwizzle.m in Sources */,
-				4C484AA61964B8500017DAD9 /* IDEWorkspace+Lin.m in Sources */,
+				4CEBACE11965D46C000F046D /* EditorLocalizable.m in Sources */,
+				4C47C5091965DC0800833711 /* ItemLocalizable.m in Sources */,
+				4C9F19831965941F0071A24E /* NSView+Dump.m in Sources */,
 				4C484AB31964B8D60017DAD9 /* ExtractLocalization.m in Sources */,
-				4C484AA51964B8500017DAD9 /* IDEIndex+Lin.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
