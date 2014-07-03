@@ -9,6 +9,11 @@ When you select a string you can easily extract to main Localizable.strings file
 
 ![02.png](https://raw.githubusercontent.com/viniciusmo/extract-localizable-string-plugin-xcode/master/Resources/02.png)
 
+## How to use
+Configure Localization native development region to default language and just extract the strings :).
+
+![03.png](https://raw.githubusercontent.com/viniciusmo/extract-localizable-string-plugin-xcode/master/Resources/03.png)
+
 ## Installation
 Download the project and build it, then relaunch Xcode.  
 ExtractLocalization will be installed in `~/Library/Application Support/Developer/Shared/Xcode/Plug-ins` automatically.
