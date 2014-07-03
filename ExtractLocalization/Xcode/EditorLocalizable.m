@@ -11,11 +11,11 @@
         }
     }
     NSString *workspacePath = [[workSpace valueForKey:@"representingFilePath"] valueForKey:@"_pathString"];
-    workspacePath = [workspacePath stringByReplacingOccurrencesOfString:@".xcworkspace"
-                                                             withString:@""];
+    workspacePath = [self removeStrings:workspacePath andArrayOfStringsToRemove:@[@".xcodeproj", @".xcworkspace"]];
+    
     NSString * nameProjectWithExtenstion = [[workspacePath componentsSeparatedByString:@"/"] lastObject];
-    NSString * nameProject = [nameProjectWithExtenstion stringByReplacingOccurrencesOfString:@".xcworkspace"
-                                                                                  withString:@""];
+    NSString * nameProject = [self removeStrings:nameProjectWithExtenstion
+                       andArrayOfStringsToRemove:@[@".xcodeproj", @".xcworkspace"]];
     NSString * plistNameFile = [NSString stringWithFormat:@"%@/%@-Info.plist",workspacePath,nameProject];
     NSMutableDictionary *plistDict = [[NSMutableDictionary alloc] initWithContentsOfFile:plistNameFile];
     NSString * language = [plistDict objectForKey:@"CFBundleDevelopmentRegion"];
@@ -32,9 +32,18 @@
                                                       error:&error];
     contents = [contents stringByAppendingString:keyAndValue];
     [contents writeToFile:toPath atomically:YES encoding: NSUTF8StringEncoding error:&error];
-    if(error) { // If error object was instantiated, handle it.
+    if(error) {
         NSLog(@"ERROR while loading from file: %@", error);
     }
 }
+
++(NSString * )removeStrings:(NSString *)string andArrayOfStringsToRemove:(NSArray *)stringsToRemove{
+    for (NSString * toRemove  in stringsToRemove) {
+        string = [string stringByReplacingOccurrencesOfString:toRemove
+                                                   withString:@""];
+    }
+    return string;
+}
+
 
 @end

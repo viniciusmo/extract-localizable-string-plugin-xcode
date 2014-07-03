@@ -1,7 +1,6 @@
 #import "ExtractLocalization.h"
 #import "RCXcode.h"
 #import "ExtractLocalizationWindowController.h"
-#import "NSView+Dump.h"
 #import "EditorLocalizable.h"
 
 static NSString *localizeRegexs[] = {
@@ -27,20 +26,22 @@ static id sharedPlugin = nil;
 
 -(id)initWithBundle:(NSBundle *)bundle{
     if (self = [super init]) {
-        NSMenuItem *editMenu = [[NSApp mainMenu] itemWithTitle:NSLocalizedString(@"Edit", @"Edit")];
-        if (editMenu) {
-            NSMenuItem *refactorMenu = [[editMenu submenu] itemWithTitle:NSLocalizedString(@"Refactor", @"Refactor")];
-            NSMenuItem *extractLocalizationStringMenu = [[NSMenuItem alloc] initWithTitle:@"Extract Localization String" action:@selector(extractLocalization) keyEquivalent:@"e"];
-            [extractLocalizationStringMenu setKeyEquivalentModifierMask:NSShiftKeyMask | NSAlternateKeyMask];
-            [extractLocalizationStringMenu setTarget:self];
-            [[refactorMenu submenu]addItem:extractLocalizationStringMenu];
-
-        }
+        [self createMenuExtractLocalization];
     }
     return self;
 }
 
-// Sample Action, for menu item:
+- (void)createMenuExtractLocalization {
+    NSMenuItem *editMenu = [[NSApp mainMenu] itemWithTitle:NSLocalizedString(@"Edit", @"Edit")];
+    if (editMenu) {
+        NSMenuItem *refactorMenu = [[editMenu submenu] itemWithTitle:NSLocalizedString(@"Refactor", @"Refactor")];
+        NSMenuItem *extractLocalizationStringMenu = [[NSMenuItem alloc] initWithTitle:@"Extract Localization String" action:@selector(extractLocalization) keyEquivalent:@"e"];
+        [extractLocalizationStringMenu setKeyEquivalentModifierMask:NSShiftKeyMask | NSAlternateKeyMask];
+        [extractLocalizationStringMenu setTarget:self];
+        [[refactorMenu submenu]addItem:extractLocalizationStringMenu];
+    }
+}
+
 - (void)extractLocalization {
     RCIDESourceCodeDocument *document = [RCXcode currentSourceCodeDocument];
     NSTextView *textView = [RCXcode currentSourceCodeTextView];
@@ -48,9 +49,12 @@ static id sharedPlugin = nil;
         return;
     }
     self.defaultLocalizableFilePath = [EditorLocalizable defaultPathLocalizablePath];
-    __strong ExtractLocalization * strongSelf = self;
+    [self searchStringAndCallWindowToEdit:textView];
+}
 
+- (void)searchStringAndCallWindowToEdit:(NSTextView *)textView{
     NSArray *selectedRanges = [textView selectedRanges];
+    __strong ExtractLocalization * strongSelf = self;
     if ([selectedRanges count] > 0) {
         NSRange range = [[selectedRanges objectAtIndex:0] rangeValue];
         NSRange lineRange = [textView.textStorage.string lineRangeForRange:range];
@@ -70,7 +74,7 @@ static id sharedPlugin = nil;
                 continue;
             }
             NSString *string = [line substringWithRange:matchedRangeInLine];
-             _extractLocationWindowController =  [[ExtractLocalizationWindowController alloc]initWithWindowNibName:@"ExtractLocalizationWindowController"];
+            _extractLocationWindowController =  [[ExtractLocalizationWindowController alloc]initWithWindowNibName:@"ExtractLocalizationWindowController"];
             [_extractLocationWindowController showWindow];
             _extractLocationWindowController.extractLocalizationDidConfirm = ^(ItemLocalizable * item) {
                 NSString *outputString = [NSString stringWithFormat:@"NSLocalizedString(@\"%@\",nil)", item.key];
@@ -86,7 +90,6 @@ static id sharedPlugin = nil;
         }
     }
 }
-
 
 - (BOOL)isRange:(NSRange)range inSkipedRanges:(NSArray *)ranges {
     for (int i = 0; i < [ranges count]; i++) {
