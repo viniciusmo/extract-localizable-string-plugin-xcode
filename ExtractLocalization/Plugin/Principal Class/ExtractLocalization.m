@@ -77,13 +77,18 @@ static id sharedPlugin = nil;
             _extractLocationWindowController =  [[ExtractLocalizationWindowController alloc]initWithWindowNibName:@"ExtractLocalizationWindowController"];
             [_extractLocationWindowController showWindow];
             _extractLocationWindowController.extractLocalizationDidConfirm = ^(ItemLocalizable * item) {
-                NSString *outputString = [NSString stringWithFormat:@"NSLocalizedString(@\"%@\",nil)", item.key];
-                addedLength = addedLength + outputString.length - string.length;
-                if ([textView shouldChangeTextInRange:matchedRangeInDocument replacementString:outputString]) {
-                    [textView.textStorage replaceCharactersInRange:matchedRangeInDocument
-                                              withAttributedString:[[NSAttributedString alloc] initWithString:outputString]];
-                    [textView didChangeText];
+                @try {
                     [EditorLocalizable saveItemLocalizable:item toPath:strongSelf.defaultLocalizableFilePath];
+                    NSString *outputString = [NSString stringWithFormat:@"NSLocalizedString(@\"%@\",nil)", item.key];
+                    addedLength = addedLength + outputString.length - string.length;
+                    if ([textView shouldChangeTextInRange:matchedRangeInDocument replacementString:outputString]) {
+                        [textView.textStorage replaceCharactersInRange:matchedRangeInDocument
+                                                  withAttributedString:[[NSAttributedString alloc] initWithString:outputString]];
+                        [textView didChangeText];
+                    }
+                }
+                @catch (NSException *exception) {
+                    NSLog(@"Save Item Localizable fail %@", exception);
                 }
             };
             [_extractLocationWindowController fillFieldValue:string];

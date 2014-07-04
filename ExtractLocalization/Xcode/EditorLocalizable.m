@@ -33,7 +33,14 @@
     contents = [contents stringByAppendingString:keyAndValue];
     [contents writeToFile:toPath atomically:YES encoding: NSUTF8StringEncoding error:&error];
     if(error) {
+        NSAlert *alert = [[NSAlert alloc] init];
+        [alert addButtonWithTitle:@"OK"];
+        [alert setMessageText:@"Default Localizable.strings file not found."];
+        [alert setInformativeText:@"The default localizable file not found.Please create your default localizable file."];
+        [alert setAlertStyle:NSCriticalAlertStyle];
+        [alert runModal];
         NSLog(@"ERROR while loading from file: %@", error);
+        [NSException raise:@"Save item localizable fail" format:@"Save item localizable fail %@", error];
     }
 }
 
