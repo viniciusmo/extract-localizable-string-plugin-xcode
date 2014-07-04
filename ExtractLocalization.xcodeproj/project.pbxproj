@@ -17,6 +17,7 @@
 		4C484AB21964B8D60017DAD9 /* ExtractLocalizationWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C484AAC1964B8D60017DAD9 /* ExtractLocalizationWindowController.m */; };
 		4C484AB31964B8D60017DAD9 /* ExtractLocalization.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C484AAF1964B8D60017DAD9 /* ExtractLocalization.m */; };
 		4C484AB41964B8D60017DAD9 /* ExtractLocalizationWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C484AB11964B8D60017DAD9 /* ExtractLocalizationWindowController.xib */; };
+		4C82FEA319675D4B00B67E46 /* FileHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C82FEA219675D4B00B67E46 /* FileHelper.m */; };
 		4CEBACE11965D46C000F046D /* EditorLocalizable.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CEBACE01965D46C000F046D /* EditorLocalizable.m */; };
 /* End PBXBuildFile section */
 
@@ -38,6 +39,8 @@
 		4C484AAE1964B8D60017DAD9 /* ExtractLocalization.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExtractLocalization.h; sourceTree = "<group>"; };
 		4C484AAF1964B8D60017DAD9 /* ExtractLocalization.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExtractLocalization.m; sourceTree = "<group>"; };
 		4C484AB11964B8D60017DAD9 /* ExtractLocalizationWindowController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ExtractLocalizationWindowController.xib; sourceTree = "<group>"; };
+		4C82FEA119675D4B00B67E46 /* FileHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileHelper.h; sourceTree = "<group>"; };
+		4C82FEA219675D4B00B67E46 /* FileHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileHelper.m; sourceTree = "<group>"; };
 		4CEBACDF1965D46C000F046D /* EditorLocalizable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EditorLocalizable.h; path = ../Xcode/EditorLocalizable.h; sourceTree = "<group>"; };
 		4CEBACE01965D46C000F046D /* EditorLocalizable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EditorLocalizable.m; path = ../Xcode/EditorLocalizable.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -116,6 +119,7 @@
 		4C484AA91964B8D60017DAD9 /* Plugin */ = {
 			isa = PBXGroup;
 			children = (
+				4C82FEA019675D3B00B67E46 /* File */,
 				4CF211EF1965F11A00206A6A /* Localization */,
 				4C484AAA1964B8D60017DAD9 /* Controllers */,
 				4C484AAD1964B8D60017DAD9 /* Principal Class */,
@@ -148,6 +152,15 @@
 				4C484AB11964B8D60017DAD9 /* ExtractLocalizationWindowController.xib */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		4C82FEA019675D3B00B67E46 /* File */ = {
+			isa = PBXGroup;
+			children = (
+				4C82FEA119675D4B00B67E46 /* FileHelper.h */,
+				4C82FEA219675D4B00B67E46 /* FileHelper.m */,
+			);
+			path = File;
 			sourceTree = "<group>";
 		};
 		4CF211EF1965F11A00206A6A /* Localization */ = {
@@ -230,6 +243,7 @@
 				4CEBACE11965D46C000F046D /* EditorLocalizable.m in Sources */,
 				4C47C5091965DC0800833711 /* ItemLocalizable.m in Sources */,
 				4C484AB31964B8D60017DAD9 /* ExtractLocalization.m in Sources */,
+				4C82FEA319675D4B00B67E46 /* FileHelper.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

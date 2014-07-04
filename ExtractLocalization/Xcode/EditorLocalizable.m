@@ -1,4 +1,5 @@
 #import "EditorLocalizable.h"
+#import "FileHelper.h"
 
 @implementation EditorLocalizable
 
@@ -12,14 +13,20 @@
     }
     NSString *workspacePath = [[workSpace valueForKey:@"representingFilePath"] valueForKey:@"_pathString"];
     workspacePath = [self removeStrings:workspacePath andArrayOfStringsToRemove:@[@".xcodeproj", @".xcworkspace"]];
-    
     NSString * nameProjectWithExtenstion = [[workspacePath componentsSeparatedByString:@"/"] lastObject];
     NSString * nameProject = [self removeStrings:nameProjectWithExtenstion
                        andArrayOfStringsToRemove:@[@".xcodeproj", @".xcworkspace"]];
     NSString * plistNameFile = [NSString stringWithFormat:@"%@/%@-Info.plist",workspacePath,nameProject];
     NSMutableDictionary *plistDict = [[NSMutableDictionary alloc] initWithContentsOfFile:plistNameFile];
-    NSString * language = [plistDict objectForKey:@"CFBundleDevelopmentRegion"];
-    NSString * defaultFileLocalization = [NSString stringWithFormat:@"%@/%@.lproj/Localizable.strings",workspacePath,language];
+    NSString * language = [NSString stringWithFormat:@"%@.lproj",[plistDict objectForKey:@"CFBundleDevelopmentRegion"]];
+    NSString * typeOfDefaultFile = [NSString stringWithFormat:@"%@/Localizable.strings",language];
+    NSArray * filesFounded = [FileHelper recursivePathsForResourcesOfType:typeOfDefaultFile inDirectory:workspacePath];
+    NSString * defaultFileLocalization  = nil;
+    if ([filesFounded count] > 0) {
+        defaultFileLocalization = [filesFounded objectAtIndex:0];
+        defaultFileLocalization = [defaultFileLocalization stringByReplacingOccurrencesOfString:language withString:[NSString stringWithFormat:@"/%@",language]];
+        NSLog(@"DefaultFileLocalization %@",defaultFileLocalization);
+    }
     return defaultFileLocalization;
 }
 
