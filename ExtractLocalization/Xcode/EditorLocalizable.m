@@ -33,7 +33,7 @@
 +(void) saveItemLocalizable:(ItemLocalizable *)itemLocalizable
                      toPath:(NSString *) toPath{
     NSError * error = nil;
-    NSString * keyAndValue = [NSString stringWithFormat:@"\n\"%@\" = \"%@\";\n",itemLocalizable.key,itemLocalizable.value];
+    NSString * keyAndValue = [NSString stringWithFormat:@"\n\"%@\" = \"%@\";",itemLocalizable.key,itemLocalizable.value];
     NSString *contents = [NSString stringWithContentsOfFile:toPath
                                                    encoding:NSUTF8StringEncoding
                                                       error:&error];

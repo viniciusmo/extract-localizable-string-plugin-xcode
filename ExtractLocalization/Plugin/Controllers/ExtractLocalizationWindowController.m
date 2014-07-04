@@ -11,6 +11,8 @@
     
 }
 -(void)showWindow{
+    [_txtKey setTarget:self];
+    [_txtKey setAction:@selector(doClickOK:)];
     [self showWindow:nil];
 }
 
