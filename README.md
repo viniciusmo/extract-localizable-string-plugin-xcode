@@ -13,9 +13,9 @@ Plugin extract the strings to default localizable .strings file.This can be set 
 
 ## Installation
 Download the project and build it, then relaunch Xcode.  
-ExtractLocalizableStrings will be installed in `~/Library/Application Support/Developer/Shared/Xcode/Plug-ins` automatically.
+ExtractorLocalizableStrings will be installed in `~/Library/Application Support/Developer/Shared/Xcode/Plug-ins` automatically.
 
-If you want to uninstall plugin, remove ExtractLocalizableStrings.xcplugin in `Plug-ins` directory.
+If you want to uninstall plugin, remove ExtractorLocalizableStrings.xcplugin in `Plug-ins` directory.
 
 ## Changelog
 > **1.0.0**
