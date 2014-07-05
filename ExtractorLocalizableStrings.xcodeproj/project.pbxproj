@@ -23,12 +23,12 @@
 
 /* Begin PBXFileReference section */
 		09EC581717E3B6E1002261C4 /* icon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = icon.icns; sourceTree = "<group>"; };
-		09F65632174041010000486B /* ExtractLocalization.xcplugin */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ExtractLocalization.xcplugin; sourceTree = BUILT_PRODUCTS_DIR; };
+		09F65632174041010000486B /* ExtractorLocalizableStrings.xcplugin */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ExtractorLocalizableStrings.xcplugin; sourceTree = BUILT_PRODUCTS_DIR; };
 		09F65635174041010000486B /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
 		09F65637174041010000486B /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		09F6563B174041010000486B /* ExtractLocalization-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ExtractLocalization-Info.plist"; sourceTree = "<group>"; };
+		09F6563B174041010000486B /* ExtractorLocalizableStrings-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ExtractorLocalizableStrings-Info.plist"; sourceTree = "<group>"; };
 		09F6563D174041010000486B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		09F65642174041010000486B /* ExtractLocalization-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ExtractLocalization-Prefix.pch"; sourceTree = "<group>"; };
+		09F65642174041010000486B /* ExtractorLocalizableStrings-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ExtractorLocalizableStrings-Prefix.pch"; sourceTree = "<group>"; };
 		4C47C5071965DC0800833711 /* ItemLocalizable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ItemLocalizable.h; path = ../Xcode/ItemLocalizable.h; sourceTree = "<group>"; };
 		4C47C5081965DC0800833711 /* ItemLocalizable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ItemLocalizable.m; path = ../Xcode/ItemLocalizable.m; sourceTree = "<group>"; };
 		4C484A951964B7F20017DAD9 /* IDEFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = IDEFoundation.framework; sourceTree = "<group>"; };
@@ -71,7 +71,7 @@
 		09F65633174041010000486B /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				09F65632174041010000486B /* ExtractLocalization.xcplugin */,
+				09F65632174041010000486B /* ExtractorLocalizableStrings.xcplugin */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -99,10 +99,10 @@
 		09F6563A174041010000486B /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				09F6563B174041010000486B /* ExtractLocalization-Info.plist */,
+				09F6563B174041010000486B /* ExtractorLocalizableStrings-Info.plist */,
 				09EC581717E3B6E1002261C4 /* icon.icns */,
 				09F6563C174041010000486B /* InfoPlist.strings */,
-				09F65642174041010000486B /* ExtractLocalization-Prefix.pch */,
+				09F65642174041010000486B /* ExtractorLocalizableStrings-Prefix.pch */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -177,9 +177,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		09F65631174041010000486B /* ExtractLocalization */ = {
+		09F65631174041010000486B /* ExtractorLocalizableStrings */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 09F65645174041010000486B /* Build configuration list for PBXNativeTarget "ExtractLocalization" */;
+			buildConfigurationList = 09F65645174041010000486B /* Build configuration list for PBXNativeTarget "ExtractorLocalizableStrings" */;
 			buildPhases = (
 				09F6562E174041010000486B /* Sources */,
 				09F6562F174041010000486B /* Frameworks */,
@@ -189,9 +189,9 @@
 			);
 			dependencies = (
 			);
-			name = ExtractLocalization;
+			name = ExtractorLocalizableStrings;
 			productName = ExtractLocalization;
-			productReference = 09F65632174041010000486B /* ExtractLocalization.xcplugin */;
+			productReference = 09F65632174041010000486B /* ExtractorLocalizableStrings.xcplugin */;
 			productType = "com.apple.product-type.bundle";
 		};
 /* End PBXNativeTarget section */
@@ -203,7 +203,7 @@
 				LastUpgradeCheck = 0510;
 				ORGANIZATIONNAME = viniciusmo;
 			};
-			buildConfigurationList = 09F6562D174041010000486B /* Build configuration list for PBXProject "ExtractLocalization" */;
+			buildConfigurationList = 09F6562D174041010000486B /* Build configuration list for PBXProject "ExtractorLocalizableStrings" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -215,7 +215,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				09F65631174041010000486B /* ExtractLocalization */,
+				09F65631174041010000486B /* ExtractorLocalizableStrings */,
 			);
 		};
 /* End PBXProject section */
@@ -329,11 +329,11 @@
 				);
 				GCC_ENABLE_OBJC_GC = unsupported;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "ExtractLocalization/ExtractLocalization-Prefix.pch";
-				INFOPLIST_FILE = "ExtractLocalization/ExtractLocalization-Info.plist";
+				GCC_PREFIX_HEADER = "ExtractLocalization/ExtractorLocalizableStrings-Prefix.pch";
+				INFOPLIST_FILE = "ExtractLocalization/ExtractorLocalizableStrings-Info.plist";
 				INSTALL_PATH = "/Library/Application Support/Developer/Shared/Xcode/Plug-ins";
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
-				PRODUCT_NAME = ExtractLocalization;
+				PRODUCT_NAME = ExtractorLocalizableStrings;
 				WRAPPER_EXTENSION = xcplugin;
 			};
 			name = Debug;
@@ -351,11 +351,11 @@
 				);
 				GCC_ENABLE_OBJC_GC = unsupported;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "ExtractLocalization/ExtractLocalization-Prefix.pch";
-				INFOPLIST_FILE = "ExtractLocalization/ExtractLocalization-Info.plist";
+				GCC_PREFIX_HEADER = "ExtractLocalization/ExtractorLocalizableStrings-Prefix.pch";
+				INFOPLIST_FILE = "ExtractLocalization/ExtractorLocalizableStrings-Info.plist";
 				INSTALL_PATH = "/Library/Application Support/Developer/Shared/Xcode/Plug-ins";
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
-				PRODUCT_NAME = ExtractLocalization;
+				PRODUCT_NAME = ExtractorLocalizableStrings;
 				WRAPPER_EXTENSION = xcplugin;
 			};
 			name = Release;
@@ -363,7 +363,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		09F6562D174041010000486B /* Build configuration list for PBXProject "ExtractLocalization" */ = {
+		09F6562D174041010000486B /* Build configuration list for PBXProject "ExtractorLocalizableStrings" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				09F65643174041010000486B /* Debug */,
@@ -372,7 +372,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		09F65645174041010000486B /* Build configuration list for PBXNativeTarget "ExtractLocalization" */ = {
+		09F65645174041010000486B /* Build configuration list for PBXNativeTarget "ExtractorLocalizableStrings" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				09F65646174041010000486B /* Debug */,

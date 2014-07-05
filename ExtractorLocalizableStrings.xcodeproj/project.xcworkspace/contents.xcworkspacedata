@@ -2,6 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:ExtractLocalization.xcodeproj">
+      location = "self:ExtractorLocalizableStrings.xcodeproj">
    </FileRef>
 </Workspace>
