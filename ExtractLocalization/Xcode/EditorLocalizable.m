@@ -24,8 +24,9 @@
     NSString * defaultFileLocalization  = nil;
     if ([filesFounded count] > 0) {
         defaultFileLocalization = [filesFounded objectAtIndex:0];
-        defaultFileLocalization = [defaultFileLocalization stringByReplacingOccurrencesOfString:language withString:[NSString stringWithFormat:@"/%@",language]];
-        NSLog(@"DefaultFileLocalization %@",defaultFileLocalization);
+        defaultFileLocalization = [defaultFileLocalization
+                                   stringByReplacingOccurrencesOfString:language
+                                   withString:[NSString stringWithFormat:@"/%@",language]];
     }
     return defaultFileLocalization;
 }
@@ -46,7 +47,6 @@
         [alert setInformativeText:@"The default localizable file not found.Please create your default localizable file."];
         [alert setAlertStyle:NSCriticalAlertStyle];
         [alert runModal];
-        NSLog(@"ERROR while loading from file: %@", error);
         [NSException raise:@"Save item localizable fail" format:@"Save item localizable fail %@", error];
     }
 }

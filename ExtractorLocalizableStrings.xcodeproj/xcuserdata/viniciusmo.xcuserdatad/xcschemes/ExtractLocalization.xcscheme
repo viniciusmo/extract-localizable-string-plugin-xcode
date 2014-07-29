@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "09F65631174041010000486B"
-               BuildableName = "ExtractLocalization.xcplugin"
+               BuildableName = "ExtractorLocalizableStrings.xcplugin"
                BlueprintName = "ExtractorLocalizableStrings"
                ReferencedContainer = "container:ExtractorLocalizableStrings.xcodeproj">
             </BuildableReference>
