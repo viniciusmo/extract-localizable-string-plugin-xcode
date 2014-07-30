@@ -21,6 +21,9 @@ If you want to uninstall plugin, remove ExtractorLocalizableStrings.xcplugin in 
 > **1.0.0**
 > 
 > - Extract string selected to default localizable file
+> **1.0.1**
+> 
+> - Fix bugs
 
 ## License
 
