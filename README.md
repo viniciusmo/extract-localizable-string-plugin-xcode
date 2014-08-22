@@ -7,6 +7,8 @@ Plugin extract the strings to default localizable .strings file.This can be set 
 ![03.png](https://raw.githubusercontent.com/viniciusmo/extract-localizable-string-plugin-xcode/master/Resources/03.png)
 
 ## How to use
+Click to view in full screen.
+
 ![01.gif](https://raw.githubusercontent.com/viniciusmo/extract-localizable-string-plugin-xcode/master/Resources/tutorial.gif)
 
 ![02.png](https://raw.githubusercontent.com/viniciusmo/extract-localizable-string-plugin-xcode/master/Resources/02.png)
