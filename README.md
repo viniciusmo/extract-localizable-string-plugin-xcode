@@ -11,6 +11,8 @@ Click to view in full screen.
 
 ![01.gif](https://raw.githubusercontent.com/viniciusmo/extract-localizable-string-plugin-xcode/master/Resources/tutorial.gif)
 
+Menu shortcut.
+
 ![02.png](https://raw.githubusercontent.com/viniciusmo/extract-localizable-string-plugin-xcode/master/Resources/02.png)
 
 ## Installation
