@@ -1,6 +1,7 @@
 #import "EditorLocalizable.h"
 #import "FileHelper.h"
 #import "Logger.h"
+#import "ExtractLocalization.h"
 
 @implementation EditorLocalizable
 
@@ -52,7 +53,13 @@
 +(NSString *) getDefaultLanguage{
     NSString *workspacePath = [self getWorkSpacePathProject];
     NSString * nameProject = [self getCurrentNameProject];
-    NSString * plistNameFile = [NSString stringWithFormat:@"%@/%@-Info.plist",workspacePath,nameProject];
+    NSString * plistNameFile = nil;
+    
+    if ([ExtractLocalization isSwift]) {
+        plistNameFile = [NSString stringWithFormat:@"%@/Info.plist",workspacePath];
+    }else{
+        plistNameFile = [NSString stringWithFormat:@"%@/%@-Info.plist",workspacePath,nameProject];
+    }
     NSMutableDictionary *plistDict = [[NSMutableDictionary alloc] initWithContentsOfFile:plistNameFile];
     NSString * language = [NSString stringWithFormat:@"%@.lproj",[plistDict objectForKey:@"CFBundleDevelopmentRegion"]];
     [Logger info:@"Language %@",language];

@@ -3,15 +3,13 @@
 #import "ExtractLocalizationWindowController.h"
 #import "EditorLocalizable.h"
 
-static NSString *localizeRegexs[] = {
-    @"NSLocalizedString\\s*\\(\\s*@\"(.*)\"\\s*,\\s*(.*)\\s*\\)",
-    @"localizedStringForKey:\\s*@\"(.*)\"\\s*value:\\s*(.*)\\s*table:\\s*(.*)",
-    @"NSLocalizedStringFromTable\\s*\\(\\s*@\"(.*)\"\\s*,\\s*(.*)\\s*,\\s*(.*)\\s*\\)",
-    @"NSLocalizedStringFromTableInBundle\\s*\\(\\s*@\"(.*)\"\\s*,\\s*(.*)\\s*,\\s*(.*)\\s*,\\s*(.*)\\s*\\)",
-    @"NSLocalizedStringWithDefaultValue\\s*\\(\\s*@\"(.*)\"\\s*,\\s*(.*)\\s*,\\s*(.*)\\s*,\\s*(.*)\\s*,\\s*(.*)\\s*\\)"
-};
-
-static NSString *stringRegexs = @"@\"[^\"]*\"";
+static NSString *localizeRegex = @"NSLocalizedString\\s*\\(\\s*@\"(.*)\"\\s*,\\s*(.*)\\s*\\)";
+static NSString *stringRegexsObjectiveC = @"@\"[^\"]*\"";
+static NSString *stringRegexsSwift = @"\"[^\"]*\"";
+static NSString * defaultStringRegex;
+static NSString * defaultStringLocalizeRegex;
+static NSString * defaultStringLocalizeFormat;
+static BOOL  isSwift;
 
 @implementation ExtractLocalization
 
@@ -31,6 +29,10 @@ static id sharedPlugin = nil;
     return self;
 }
 
++(BOOL)isSwift{
+    return isSwift;
+}
+
 - (void)createMenuExtractLocalization {
     NSMenuItem *editMenu = [[NSApp mainMenu] itemWithTitle:NSLocalizedString(@"Edit", @"Edit")];
     if (editMenu) {
@@ -48,6 +50,19 @@ static id sharedPlugin = nil;
     if (!document || !textView) {
         return;
     }
+    NSString * fileExtesion = [[document.displayName componentsSeparatedByString:@"."] objectAtIndex:1];
+    
+    if ([fileExtesion isEqualToString:@"swift"]) {
+        isSwift = YES;
+        defaultStringRegex = stringRegexsSwift;
+        defaultStringLocalizeRegex =  @"NSLocalizedString\\s*\\(\\s*\"(.*)\"\\s*,\\s*(.*)\\s*\\)";
+        defaultStringLocalizeFormat=  @"NSLocalizedString(\"%@\",comment:\"\")";
+    }else{
+        isSwift = NO;
+        defaultStringRegex = stringRegexsObjectiveC;
+        defaultStringLocalizeRegex = localizeRegex;
+        defaultStringLocalizeFormat= @"NSLocalizedString(@\"%@\",nil)";
+    }
     self.defaultLocalizableFilePath = [EditorLocalizable defaultPathLocalizablePath];
     [self searchStringAndCallWindowToEdit:textView];
 }
@@ -60,12 +75,13 @@ static id sharedPlugin = nil;
         NSRange lineRange = [textView.textStorage.string lineRangeForRange:range];
         NSString *line = [textView.textStorage.string substringWithRange:lineRange];
         
-        NSRegularExpression *localizedRex = [[NSRegularExpression alloc] initWithPattern:localizeRegexs[0] options:NSRegularExpressionCaseInsensitive error:nil];
+        NSRegularExpression *localizedRex = [[NSRegularExpression alloc] initWithPattern:defaultStringLocalizeRegex options:NSRegularExpressionCaseInsensitive error:nil];
         NSArray *localizedMatches = [localizedRex matchesInString:line options:0 range:NSMakeRange(0, [line length])];
         
-        NSRegularExpression *regex = [[NSRegularExpression alloc] initWithPattern:stringRegexs options:NSRegularExpressionCaseInsensitive error:nil];
+        NSRegularExpression *regex = [[NSRegularExpression alloc] initWithPattern:defaultStringRegex options:NSRegularExpressionCaseInsensitive error:nil];
         NSArray *matches = [regex matchesInString:line options:0 range:NSMakeRange(0, [line length])];
         __block NSUInteger addedLength = 0;
+        
         for (int i = 0; i < [matches count]; i++) {
             NSTextCheckingResult *result = [matches objectAtIndex:i];
             NSRange matchedRangeInLine = result.range;
@@ -79,7 +95,7 @@ static id sharedPlugin = nil;
             _extractLocationWindowController.extractLocalizationDidConfirm = ^(ItemLocalizable * item) {
                 @try {
                     [EditorLocalizable saveItemLocalizable:item toPath:strongSelf.defaultLocalizableFilePath];
-                    NSString *outputString = [NSString stringWithFormat:@"NSLocalizedString(@\"%@\",nil)", item.key];
+                    NSString *outputString = [NSString stringWithFormat:defaultStringLocalizeFormat, item.key];
                     addedLength = addedLength + outputString.length - string.length;
                     if ([textView shouldChangeTextInRange:matchedRangeInDocument replacementString:outputString]) {
                         [textView.textStorage replaceCharactersInRange:matchedRangeInDocument
