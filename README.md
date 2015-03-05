@@ -35,6 +35,10 @@ If you want to uninstall plugin, remove ExtractorLocalizableStrings.xcplugin in 
 > - Fix bugs
 > - Support to Swift and Xcode 6
 
+> **2.0.1**
+> 
+> - Adding support to choose file
+
 ## License
 
 (The MIT License)
