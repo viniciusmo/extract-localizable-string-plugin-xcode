@@ -88,11 +88,41 @@
         NSAlert *alert = [[NSAlert alloc] init];
         [alert addButtonWithTitle:@"OK"];
         [alert setMessageText:@"Default Localizable.strings file not found."];
-        [alert setInformativeText:@"The default localizable file not found.Please create your default localizable file."];
+        [alert setInformativeText:@"The default localizable file not found.Please create your default localizable file or choose"];
+        [alert addButtonWithTitle:@"Choose localizable file"];
         [alert setAlertStyle:NSCriticalAlertStyle];
-        [alert runModal];
-        [NSException raise:@"Save item localizable fail" format:@"Save item localizable fail %@", error];
+        NSInteger result =  [alert runModal];
+        if (result == NSAlertSecondButtonReturn ) {
+            NSString * file =  [self chooseFileLocalizableString];
+            if (file != nil) {
+                [self saveItemLocalizable:itemLocalizable toPath:file];
+            }else{
+                [NSException raise:@"Save item localizable fail" format:@"Save item localizable fail %@", error];
+            }
+        }
+        if (result == NSAlertFirstButtonReturn ){
+            [NSException raise:@"Save item localizable fail" format:@"Save item localizable fail %@", error];
+        }
     }
+}
+
+
++(NSString *) chooseFileLocalizableString{
+    NSOpenPanel *panel = [NSOpenPanel openPanel];
+    [panel setCanChooseFiles:YES];
+    [panel setCanChooseDirectories:NO];
+    [panel setAllowsMultipleSelection:NO]; // yes if more than one dir is allowed
+    [panel setAllowedFileTypes:@[@"strings"]];
+    NSInteger clicked = [panel runModal];
+    
+    if (clicked == NSFileHandlingPanelOKButton) {
+        if ([[panel URLs] count] > 0) {
+            NSURL * path  = [[panel URLs] objectAtIndex:0];
+            NSString * filePath  = [[[path  filePathURL] description] stringByReplacingOccurrencesOfString:@"file://" withString:@""];
+            return filePath;
+        }
+    }
+    return nil;
 }
 
 +(NSString * )removeStrings:(NSString *)string andArrayOfStringsToRemove:(NSArray *)stringsToRemove{

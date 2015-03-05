@@ -37,6 +37,7 @@ static id sharedPlugin = nil;
     NSMenuItem *editMenu = [[NSApp mainMenu] itemWithTitle:NSLocalizedString(@"Edit", @"Edit")];
     if (editMenu) {
         NSMenuItem *refactorMenu = [[editMenu submenu] itemWithTitle:NSLocalizedString(@"Refactor", @"Refactor")];
+        
         NSMenuItem *extractLocalizationStringMenu = [[NSMenuItem alloc] initWithTitle:@"Extract Localizable String" action:@selector(extractLocalization) keyEquivalent:@"e"];
         [extractLocalizationStringMenu setKeyEquivalentModifierMask:NSShiftKeyMask | NSAlternateKeyMask];
         [extractLocalizationStringMenu setTarget:self];

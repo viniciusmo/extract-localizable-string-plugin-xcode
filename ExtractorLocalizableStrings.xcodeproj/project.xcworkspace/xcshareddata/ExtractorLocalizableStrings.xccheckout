@@ -10,29 +10,29 @@
 	<string>ExtractorLocalizableStrings</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
-		<key>1B59F4A4-EB5A-478E-854E-7FE61C5FA9F7</key>
+		<key>EA411E27C211131A0F60297E61019A37DF814E14</key>
 		<string>https://github.com/viniciusmo/extract-localizable-string-plugin-xcode.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>ExtractorLocalizableStrings.xcodeproj/project.xcworkspace</string>
+	<string>ExtractorLocalizableStrings.xcodeproj</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
-		<key>1B59F4A4-EB5A-478E-854E-7FE61C5FA9F7</key>
+		<key>EA411E27C211131A0F60297E61019A37DF814E14</key>
 		<string>../..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
 	<string>https://github.com/viniciusmo/extract-localizable-string-plugin-xcode.git</string>
 	<key>IDESourceControlProjectVersion</key>
-	<integer>110</integer>
+	<integer>111</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>1B59F4A4-EB5A-478E-854E-7FE61C5FA9F7</string>
+	<string>EA411E27C211131A0F60297E61019A37DF814E14</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>1B59F4A4-EB5A-478E-854E-7FE61C5FA9F7</string>
+			<string>EA411E27C211131A0F60297E61019A37DF814E14</string>
 			<key>IDESourceControlWCCName</key>
 			<string>extract-localizable-string-plugin-xcode</string>
 		</dict>
