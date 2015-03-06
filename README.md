@@ -39,6 +39,10 @@ If you want to uninstall plugin, remove ExtractorLocalizableStrings.xcplugin in 
 > 
 > - Adding support to choose file
 
+> **2.0.2**
+> 
+> - Fix bugs
+
 ## License
 
 (The MIT License)

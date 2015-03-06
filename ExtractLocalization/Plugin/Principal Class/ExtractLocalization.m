@@ -43,7 +43,7 @@ static id sharedPlugin = nil;
         [extractLocalizationStringMenu setTarget:self];
         
         
-        NSMenuItem *changeLocalizableFile = [[NSMenuItem alloc] initWithTitle:@"Change Localizable File" action:@selector(cho) keyEquivalent:@"e"];
+        NSMenuItem *changeLocalizableFile = [[NSMenuItem alloc] initWithTitle:@"Change Localizable File" action:@selector(chooseLocalizableFile) keyEquivalent:@"e"];
         [changeLocalizableFile setKeyEquivalentModifierMask:NSShiftKeyMask | NSAlternateKeyMask | NSCommandKeyMask];
         [changeLocalizableFile setTarget:self];
 
