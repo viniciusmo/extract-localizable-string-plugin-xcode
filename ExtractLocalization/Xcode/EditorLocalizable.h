@@ -9,4 +9,6 @@
 +(void) saveItemLocalizable:(ItemLocalizable *)itemLocalizable
                      toPath:(NSString *) toPath;
 
++(NSString *) chooseFileLocalizableString;
+
 @end

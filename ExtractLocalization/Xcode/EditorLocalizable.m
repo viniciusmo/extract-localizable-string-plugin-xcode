@@ -3,9 +3,17 @@
 #import "Logger.h"
 #import "ExtractLocalization.h"
 
+const static NSString * kEditorLocalizableFilePathLocalizable = @"kEditorLocalizableFilePathLocalizable";
+
 @implementation EditorLocalizable
 
 +(NSString *) defaultPathLocalizablePath{
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSString * filePath = [defaults objectForKey:[kEditorLocalizableFilePathLocalizable copy]];
+    if (filePath) {
+        return filePath;
+    }
+    
     NSString * defaultNameOfFileLocalizable = [self getCurrentDefaultNameOfFileLocalizable];
     NSArray * filesFounded = [FileHelper recursivePathsForResourcesOfType:defaultNameOfFileLocalizable
                                                               inDirectory:[self getRootProjectPath]];
@@ -123,6 +131,9 @@
         if ([[panel URLs] count] > 0) {
             NSURL * path  = [[panel URLs] objectAtIndex:0];
             NSString * filePath  = [[[path  filePathURL] description] stringByReplacingOccurrencesOfString:@"file://" withString:@""];
+            NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+            [defaults setObject:filePath forKey:[kEditorLocalizableFilePathLocalizable copy]];
+            [defaults synchronize];
             return filePath;
         }
     }

@@ -37,12 +37,24 @@ static id sharedPlugin = nil;
     NSMenuItem *editMenu = [[NSApp mainMenu] itemWithTitle:NSLocalizedString(@"Edit", @"Edit")];
     if (editMenu) {
         NSMenuItem *refactorMenu = [[editMenu submenu] itemWithTitle:NSLocalizedString(@"Refactor", @"Refactor")];
-        
+    
         NSMenuItem *extractLocalizationStringMenu = [[NSMenuItem alloc] initWithTitle:@"Extract Localizable String" action:@selector(extractLocalization) keyEquivalent:@"e"];
         [extractLocalizationStringMenu setKeyEquivalentModifierMask:NSShiftKeyMask | NSAlternateKeyMask];
         [extractLocalizationStringMenu setTarget:self];
+        
+        
+        NSMenuItem *changeLocalizableFile = [[NSMenuItem alloc] initWithTitle:@"Change Localizable File" action:@selector(cho) keyEquivalent:@"e"];
+        [changeLocalizableFile setKeyEquivalentModifierMask:NSShiftKeyMask | NSAlternateKeyMask | NSCommandKeyMask];
+        [changeLocalizableFile setTarget:self];
+
         [[refactorMenu submenu]addItem:extractLocalizationStringMenu];
+        [[refactorMenu submenu]addItem:changeLocalizableFile];
     }
+    
+}
+
+-(void) chooseLocalizableFile{
+    [EditorLocalizable  chooseFileLocalizableString];
 }
 
 - (void)extractLocalization {
