@@ -130,7 +130,7 @@ const static NSString * kEditorLocalizableFilePathLocalizable = @"kEditorLocaliz
     if (clicked == NSFileHandlingPanelOKButton) {
         if ([[panel URLs] count] > 0) {
             NSURL * path  = [[panel URLs] objectAtIndex:0];
-            NSString * filePath  = [[[path  filePathURL] description] stringByReplacingOccurrencesOfString:@"file://" withString:@""];
+            NSString * filePath  = [path path];
             NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
             [defaults setObject:filePath forKey:[kEditorLocalizableFilePathLocalizable copy]];
             [defaults synchronize];
