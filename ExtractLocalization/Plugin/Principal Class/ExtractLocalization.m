@@ -24,7 +24,7 @@ static id sharedPlugin = nil;
 
 -(id)initWithBundle:(NSBundle *)bundle{
     if (self = [super init]) {
-        [self createMenuExtractLocalization];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(createMenuExtractLocalization) name:NSApplicationDidFinishLaunchingNotification object:nil];
     }
     return self;
 }
