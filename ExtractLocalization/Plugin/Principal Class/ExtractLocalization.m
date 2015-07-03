@@ -136,4 +136,8 @@ static id sharedPlugin = nil;
     return NO;
 }
 
+- (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:NSApplicationDidFinishLaunchingNotification object:nil];
+}
+
 @end
