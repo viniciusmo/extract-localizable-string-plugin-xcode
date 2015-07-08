@@ -43,12 +43,12 @@ static id sharedPlugin = nil;
         [extractLocalizationStringMenu setTarget:self];
         
         
-        NSMenuItem *changeLocalizableFile = [[NSMenuItem alloc] initWithTitle:@"Change Localizable File" action:@selector(chooseLocalizableFile) keyEquivalent:@"e"];
-        [changeLocalizableFile setKeyEquivalentModifierMask:NSShiftKeyMask | NSAlternateKeyMask | NSCommandKeyMask];
-        [changeLocalizableFile setTarget:self];
+//        NSMenuItem *changeLocalizableFile = [[NSMenuItem alloc] initWithTitle:@"Change Localizable File" action:@selector(chooseLocalizableFile) keyEquivalent:@"e"];
+//        [changeLocalizableFile setKeyEquivalentModifierMask:NSShiftKeyMask | NSAlternateKeyMask | NSCommandKeyMask];
+//        [changeLocalizableFile setTarget:self];
 
         [[refactorMenu submenu]addItem:extractLocalizationStringMenu];
-        [[refactorMenu submenu]addItem:changeLocalizableFile];
+//        [[refactorMenu submenu]addItem:changeLocalizableFile];
     }
     
 }
@@ -76,7 +76,7 @@ static id sharedPlugin = nil;
         defaultStringLocalizeRegex = localizeRegex;
         defaultStringLocalizeFormat= @"NSLocalizedString(@\"%@\",nil)";
     }
-    self.defaultLocalizableFilePath = [EditorLocalizable defaultPathLocalizablePath];
+    self.localizableFilePaths = [EditorLocalizable localizableFilePaths];
     [self searchStringAndCallWindowToEdit:textView];
 }
 
@@ -107,7 +107,11 @@ static id sharedPlugin = nil;
             [_extractLocationWindowController showWindow];
             _extractLocationWindowController.extractLocalizationDidConfirm = ^(ItemLocalizable * item) {
                 @try {
-                    [EditorLocalizable saveItemLocalizable:item toPath:strongSelf.defaultLocalizableFilePath];
+                    
+                    for (NSString* localizableFile in strongSelf.localizableFilePaths) {
+                        [EditorLocalizable saveItemLocalizable:item toPath:localizableFile];
+                    }
+                    
                     NSString *outputString = [NSString stringWithFormat:defaultStringLocalizeFormat, item.key];
                     addedLength = addedLength + outputString.length - string.length;
                     if ([textView shouldChangeTextInRange:matchedRangeInDocument replacementString:outputString]) {

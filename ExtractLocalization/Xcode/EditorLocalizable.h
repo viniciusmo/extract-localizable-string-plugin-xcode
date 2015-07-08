@@ -4,7 +4,7 @@
 
 @interface EditorLocalizable : NSObject
 
-+(NSString *) defaultPathLocalizablePath;
++(NSArray *) localizableFilePaths;
 
 +(void) saveItemLocalizable:(ItemLocalizable *)itemLocalizable
                      toPath:(NSString *) toPath;

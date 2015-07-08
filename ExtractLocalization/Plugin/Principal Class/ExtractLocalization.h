@@ -4,7 +4,7 @@
 @interface ExtractLocalization : NSObject
 
 @property(strong) ExtractLocalizationWindowController * extractLocationWindowController;
-@property(strong) NSString * defaultLocalizableFilePath;
+@property(strong) NSArray * localizableFilePaths;
 
 +(BOOL)isSwift;
 

@@ -7,26 +7,23 @@ const static NSString * kEditorLocalizableFilePathLocalizable = @"kEditorLocaliz
 
 @implementation EditorLocalizable
 
-+(NSString *) defaultPathLocalizablePath{
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    NSString * filePath = [defaults objectForKey:[kEditorLocalizableFilePathLocalizable copy]];
-    if (filePath) {
-        return filePath;
-    }
++(NSArray *) localizableFilePaths{
     
     NSString * defaultNameOfFileLocalizable = [self getCurrentDefaultNameOfFileLocalizable];
-    NSArray * filesFounded = [FileHelper recursivePathsForResourcesOfType:defaultNameOfFileLocalizable
+    NSArray * localizableFilesFounded = [FileHelper recursivePathsForResourcesOfType:defaultNameOfFileLocalizable
                                                               inDirectory:[self getRootProjectPath]];
-    NSString * language = [self getDefaultLanguage];
-    NSString * defaultFileLocalization  = nil;
-    if ([filesFounded count] > 0) {
-        defaultFileLocalization = [filesFounded objectAtIndex:0];
-        defaultFileLocalization = [defaultFileLocalization
-                                   stringByReplacingOccurrencesOfString:language
-                                   withString:[NSString stringWithFormat:@"/%@",language]];
+    
+    NSMutableArray *projectLocalizableFiles = [NSMutableArray new];
+    
+    NSString *workspaceFilePath = [self getWorkSpacePathProject];
+    
+    for (NSString *localizableFilePath in localizableFilesFounded) {
+        if (![localizableFilePath containsString:@".bundle"] && [localizableFilePath containsString:workspaceFilePath]) {
+            [projectLocalizableFiles addObject:localizableFilePath];
+        }
     }
-    [Logger info:@"Default localizable path %@",defaultFileLocalization];
-    return defaultFileLocalization;
+    [Logger info:@"Localizable file paths %@",projectLocalizableFiles];
+    return projectLocalizableFiles;
 }
 
 +(NSString *) getWorkSpacePathProject{
@@ -55,7 +52,7 @@ const static NSString * kEditorLocalizableFilePathLocalizable = @"kEditorLocaliz
 }
 
 +(NSString *) getCurrentDefaultNameOfFileLocalizable{
-    return [NSString stringWithFormat:@"%@/Localizable.strings",[self getDefaultLanguage]];
+    return @"Localizable.strings";
 }
 
 +(NSString *) getDefaultLanguage{
