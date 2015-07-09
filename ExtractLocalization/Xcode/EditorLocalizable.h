@@ -11,4 +11,10 @@
 
 +(NSString *) chooseFileLocalizableString;
 
++ (BOOL)checkIfKeyExists:(NSString *)key;
+
++ (BOOL)checkIfValueExists:(NSString *)value;
+
++ (NSString *)getKeyForValue:(NSString *)value;
+
 @end

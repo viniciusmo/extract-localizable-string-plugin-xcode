@@ -3,15 +3,22 @@
 #import "Logger.h"
 #import "ExtractLocalization.h"
 
+static NSString *kKeysArray = @"keys";
+static NSString *kValuesArray = @"values";
 const static NSString * kEditorLocalizableFilePathLocalizable = @"kEditorLocalizableFilePathLocalizable";
+
+
 
 @implementation EditorLocalizable
 
 +(NSArray *) localizableFilePaths{
-    
-    NSString * defaultNameOfFileLocalizable = [self getCurrentDefaultNameOfFileLocalizable];
-    NSArray * localizableFilesFounded = [FileHelper recursivePathsForResourcesOfType:defaultNameOfFileLocalizable
-                                                              inDirectory:[self getRootProjectPath]];
+    NSString * defaultNameOfFileLocalizable = @"Localizable.strings";
+    return [self findValidLocalizableFilesMatchingPath:defaultNameOfFileLocalizable];
+}
+
++ (NSArray *)findValidLocalizableFilesMatchingPath:(NSString *)path {
+    NSArray * localizableFilesFounded = [FileHelper recursivePathsForResourcesOfType:path
+                                                                         inDirectory:[self getRootProjectPath]];
     
     NSMutableArray *projectLocalizableFiles = [NSMutableArray new];
     
@@ -22,7 +29,6 @@ const static NSString * kEditorLocalizableFilePathLocalizable = @"kEditorLocaliz
             [projectLocalizableFiles addObject:localizableFilePath];
         }
     }
-    [Logger info:@"Localizable file paths %@",projectLocalizableFiles];
     return projectLocalizableFiles;
 }
 
@@ -30,9 +36,9 @@ const static NSString * kEditorLocalizableFilePathLocalizable = @"kEditorLocaliz
     NSArray *workspaceWindowControllers = [NSClassFromString(@"IDEWorkspaceWindowController") valueForKey:@"workspaceWindowControllers"];
     id workSpace;
     for (id controller in workspaceWindowControllers) {
-        if ([[controller valueForKey:@"window"] isEqual:[NSApp keyWindow]]) {
+        //if ([[controller valueForKey:@"window"] isEqual:[NSApp keyWindow]]) {
             workSpace = [controller valueForKey:@"_workspace"];
-        }
+        //}
     }
     NSString *workspacePath = [[workSpace valueForKey:@"representingFilePath"] valueForKey:@"_pathString"];
     workspacePath = [self removeStrings:workspacePath andArrayOfStringsToRemove:@[@".xcodeproj", @".xcworkspace"]];
@@ -51,8 +57,26 @@ const static NSString * kEditorLocalizableFilePathLocalizable = @"kEditorLocaliz
     return rootProjectPath;
 }
 
-+(NSString *) getCurrentDefaultNameOfFileLocalizable{
-    return @"Localizable.strings";
++(NSString *) getDefaultLocalizableFilePath {
+    NSString *defaultLanguageLocalizableFileName = [NSString stringWithFormat:@"%@/Localizable.strings",[self getDefaultLanguage]];
+    NSArray *defaultLanguageLocalizableFilePaths = [self findValidLocalizableFilesMatchingPath:defaultLanguageLocalizableFileName];
+    if (defaultLanguageLocalizableFilePaths.count > 0) {
+        return [defaultLanguageLocalizableFilePaths objectAtIndex:0];
+    }
+    
+    
+    NSString *baseLanguageLocalizableFileName = @"Base.lproj/Localizable.strings";
+    NSArray *baseLanguageLocalizableFilePaths = [self findValidLocalizableFilesMatchingPath:baseLanguageLocalizableFileName];
+    if (baseLanguageLocalizableFilePaths.count > 0) {
+        return [baseLanguageLocalizableFilePaths objectAtIndex:0];
+    }
+    
+    NSArray *allLocalizableFilePaths = [self localizableFilePaths];
+    if (allLocalizableFilePaths.count > 0) {
+        return [allLocalizableFilePaths objectAtIndex:0];
+    }
+    
+    return nil;
 }
 
 +(NSString *) getDefaultLanguage{
@@ -60,15 +84,20 @@ const static NSString * kEditorLocalizableFilePathLocalizable = @"kEditorLocaliz
     NSString * nameProject = [self getCurrentNameProject];
     NSString * plistNameFile = nil;
     
-    if ([ExtractLocalization isSwift]) {
+    plistNameFile = [NSString stringWithFormat:@"%@/%@-Info.plist",workspacePath,nameProject];
+    
+    if (![[NSFileManager defaultManager] fileExistsAtPath:plistNameFile]) {
         plistNameFile = [NSString stringWithFormat:@"%@/Info.plist",workspacePath];
-    }else{
-        plistNameFile = [NSString stringWithFormat:@"%@/%@-Info.plist",workspacePath,nameProject];
     }
+    
     NSMutableDictionary *plistDict = [[NSMutableDictionary alloc] initWithContentsOfFile:plistNameFile];
-    NSString * language = [NSString stringWithFormat:@"%@.lproj",[plistDict objectForKey:@"CFBundleDevelopmentRegion"]];
-    [Logger info:@"Language %@",language];
-    return language;
+    
+    if (plistDict && [plistDict objectForKey:@"CFBundleDevelopmentRegion"]) {
+        NSString * language = [NSString stringWithFormat:@"%@.lproj",[plistDict objectForKey:@"CFBundleDevelopmentRegion"]];
+        [Logger info:@"Language %@",language];
+        return language?:@"";
+    }
+    return @"";
 }
 
 +(NSString *) getCurrentNameProject{
@@ -104,7 +133,7 @@ const static NSString * kEditorLocalizableFilePathLocalizable = @"kEditorLocaliz
 +(void) saveItemLocalizable:(ItemLocalizable *)itemLocalizable
                      toPath:(NSString *) toPath{
     NSError * error = nil;
-    NSString * keyAndValue = [NSString stringWithFormat:@"\n\"%@\" = \"%@\";",itemLocalizable.key,itemLocalizable.value];
+    NSString * keyAndValue = [NSString stringWithFormat:@"\n\"%@\" = \"%@\"; // %@",itemLocalizable.key,itemLocalizable.value, itemLocalizable.comment];
     NSString *contents = [NSString stringWithContentsOfFile:toPath
                                                    encoding:NSUTF8StringEncoding
                                                       error:&error];
@@ -145,5 +174,53 @@ const static NSString * kEditorLocalizableFilePathLocalizable = @"kEditorLocaliz
     return string;
 }
 
++ (NSString *)getKeyForValue:(NSString *)value {
+    NSString *localizableFilePath = [self getDefaultLocalizableFilePath];
+    
+    NSArray *keysArray = [[self getLocalizableKeyValueArraysFromFile:localizableFilePath] valueForKey:kKeysArray];
+    NSArray *valuesArray = [[self getLocalizableKeyValueArraysFromFile:localizableFilePath] valueForKey:kValuesArray];
+    
+    return [keysArray objectAtIndex:[valuesArray indexOfObject:value]];
+}
+
++ (BOOL)checkIfKeyExists:(NSString *)key {
+    NSString *localizableFilePath = [self getDefaultLocalizableFilePath];
+    
+    NSArray *keysArray = [[self getLocalizableKeyValueArraysFromFile:localizableFilePath] valueForKey:kKeysArray];
+    
+    return [keysArray containsObject:key];
+}
+
++ (BOOL)checkIfValueExists:(NSString *)value {
+    NSString *localizableFilePath = [self getDefaultLocalizableFilePath];
+    
+    NSArray *valuesArray = [[self getLocalizableKeyValueArraysFromFile:localizableFilePath] valueForKey:kValuesArray];
+    
+    return [valuesArray containsObject:value];
+}
+
++ (NSDictionary *)getLocalizableKeyValueArraysFromFile:(NSString *)localizableFilePath {
+    NSString* localizableFileContent =[NSString stringWithContentsOfFile:localizableFilePath encoding:NSUTF8StringEncoding error:nil];
+    NSString *localizableStringPattern = @"\"(.*)\"[ ]*=[ ]*\"(.*)\";";
+    NSRegularExpression *localizableRegularExpression = [NSRegularExpression regularExpressionWithPattern:localizableStringPattern options:0 error:nil];
+    
+    NSMutableArray *localizableKeys = [NSMutableArray new];
+    NSMutableArray *localizableValues = [NSMutableArray new];
+    
+    [localizableFileContent enumerateLinesUsingBlock:^(NSString *line, BOOL *stop) {
+        NSRange matchRange = NSMakeRange(0, line.length);
+        NSTextCheckingResult *match = [localizableRegularExpression firstMatchInString:line options:0 range:matchRange];
+        
+        NSString *key = [line substringWithRange:[match rangeAtIndex:1]];
+        NSString *value = [line substringWithRange:[match rangeAtIndex:2]];
+        
+        if (key != nil && ![key isEqualToString:@""] && value != nil) {
+            [localizableKeys addObject:key];
+            [localizableValues addObject:value];
+        }
+    }];
+    
+    return @{kKeysArray:localizableKeys, kValuesArray:localizableValues};
+}
 
 @end
