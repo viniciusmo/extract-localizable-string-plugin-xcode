@@ -91,6 +91,16 @@
                             <action selector="doClickOK:" target="-2" id="q95-tf-0vq"/>
                         </connections>
                     </button>
+                    <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fUX-tj-GDS">
+                        <rect key="frame" x="247" y="19" width="71" height="19"/>
+                        <buttonCell key="cell" type="roundRect" title="Cancel" bezelStyle="roundedRect" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="5TH-K2-k67">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="titleBar" size="12"/>
+                        </buttonCell>
+                        <connections>
+                            <action selector="doClickCancel:" target="-2" id="rYM-MU-oIC"/>
+                        </connections>
+                    </button>
                 </subviews>
             </view>
             <connections>

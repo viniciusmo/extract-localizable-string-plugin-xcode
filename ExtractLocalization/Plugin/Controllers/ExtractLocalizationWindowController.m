@@ -6,7 +6,11 @@
     ItemLocalizable * item = [[ItemLocalizable alloc]
                               initWithKey:_txtKey.stringValue
                               andValue:_txtValue.stringValue andComment:_txtComment.stringValue];
-    _extractLocalizationDidConfirm(item);    
+    _extractLocalizationDidConfirm(item);
+}
+
+- (IBAction)doClickCancel:(id)sender {
+    [[self window] orderOut:self];    
 }
 
 -(void)showWindow{
