@@ -6,10 +6,9 @@
     ItemLocalizable * item = [[ItemLocalizable alloc]
                               initWithKey:_txtKey.stringValue
                               andValue:_txtValue.stringValue andComment:_txtComment.stringValue];
-    _extractLocalizationDidConfirm(item);
-    [[self window ]orderOut:self];
-    
+    _extractLocalizationDidConfirm(item);    
 }
+
 -(void)showWindow{
     [_txtKey setTarget:self];
     [_txtKey setAction:@selector(doClickOK:)];

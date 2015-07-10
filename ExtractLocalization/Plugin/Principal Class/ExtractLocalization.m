@@ -69,12 +69,12 @@ static id sharedPlugin = nil;
         isSwift = YES;
         defaultStringRegex = stringRegexsSwift;
         defaultStringLocalizeRegex =  @"NSLocalizedString\\s*\\(\\s*\"(.*)\"\\s*,\\s*(.*)\\s*\\)";
-        defaultStringLocalizeFormat=  @"NSLocalizedString(\"%@\",comment:\"%@\")";
+        defaultStringLocalizeFormat=  @"NSLocalizedString(\"%@\", comment:\"%@\")";
     }else{
         isSwift = NO;
         defaultStringRegex = stringRegexsObjectiveC;
         defaultStringLocalizeRegex = localizeRegex;
-        defaultStringLocalizeFormat= @"NSLocalizedString(@\"%@\",%@)";
+        defaultStringLocalizeFormat= @"NSLocalizedString(@\"%@\", %@)";
     }
     self.localizableFilePaths = [EditorLocalizable localizableFilePaths];
     [self searchStringAndCallWindowToEdit:textView];
@@ -105,6 +105,8 @@ static id sharedPlugin = nil;
             NSString *string = [line substringWithRange:matchedRangeInLine];
             _extractLocationWindowController =  [[ExtractLocalizationWindowController alloc]initWithWindowNibName:@"ExtractLocalizationWindowController"];
             [_extractLocationWindowController showWindow];
+            
+            __weak typeof(self) weakSelf = self;
             _extractLocationWindowController.extractLocalizationDidConfirm = ^(ItemLocalizable * item) {
                 @try {
                     
@@ -174,6 +176,8 @@ static id sharedPlugin = nil;
                                                   withAttributedString:[[NSAttributedString alloc] initWithString:outputString]];
                         [textView didChangeText];
                     }
+                    
+                    [[weakSelf.extractLocationWindowController window]orderOut:weakSelf];
                 }
                 @catch (NSException *exception) {
                     NSLog(@"Save Item Localizable fail %@", exception);
