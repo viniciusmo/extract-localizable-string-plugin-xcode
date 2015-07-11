@@ -4,8 +4,10 @@
 
 @property (strong) NSString * key;
 @property (strong) NSString * value;
+@property (strong) NSString * comment;
 
 -(id)initWithKey:(NSString *) key
-        andValue:(NSString *) value;
+        andValue:(NSString *) value
+        andComment:(NSString *) comment;
 
 @end

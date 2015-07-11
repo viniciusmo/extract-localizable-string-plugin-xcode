@@ -1,10 +1,9 @@
 # Extractor Localizable Strings
 Extractor Localizable Strings is a open source plug-in for Xcode.  
 It lets you extract localizable strings without opening the .strings file.
-When you select a string you can easily extract to main Localizable.strings file without opening it.
-Plugin extract the strings to default localizable .strings file.This can be set in Info.plist:
-
-![03.png](https://raw.githubusercontent.com/viniciusmo/extract-localizable-string-plugin-xcode/master/Resources/03.png)
+When you select a string you can easily extract to all Localizable.strings file without opening it.
+This plugin will also notify if you try to add same key again.
+If you try to add a same string again, this plugin will ask you to create a new key for that string or use existing one.
 
 ## How to use
 Click to view in full screen.

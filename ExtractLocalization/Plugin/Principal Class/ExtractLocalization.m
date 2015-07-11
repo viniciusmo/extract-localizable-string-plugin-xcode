@@ -43,12 +43,12 @@ static id sharedPlugin = nil;
         [extractLocalizationStringMenu setTarget:self];
         
         
-        NSMenuItem *changeLocalizableFile = [[NSMenuItem alloc] initWithTitle:@"Change Localizable File" action:@selector(chooseLocalizableFile) keyEquivalent:@"e"];
-        [changeLocalizableFile setKeyEquivalentModifierMask:NSShiftKeyMask | NSAlternateKeyMask | NSCommandKeyMask];
-        [changeLocalizableFile setTarget:self];
+//        NSMenuItem *changeLocalizableFile = [[NSMenuItem alloc] initWithTitle:@"Change Localizable File" action:@selector(chooseLocalizableFile) keyEquivalent:@"e"];
+//        [changeLocalizableFile setKeyEquivalentModifierMask:NSShiftKeyMask | NSAlternateKeyMask | NSCommandKeyMask];
+//        [changeLocalizableFile setTarget:self];
 
         [[refactorMenu submenu]addItem:extractLocalizationStringMenu];
-        [[refactorMenu submenu]addItem:changeLocalizableFile];
+//        [[refactorMenu submenu]addItem:changeLocalizableFile];
     }
     
 }
@@ -69,14 +69,14 @@ static id sharedPlugin = nil;
         isSwift = YES;
         defaultStringRegex = stringRegexsSwift;
         defaultStringLocalizeRegex =  @"NSLocalizedString\\s*\\(\\s*\"(.*)\"\\s*,\\s*(.*)\\s*\\)";
-        defaultStringLocalizeFormat=  @"NSLocalizedString(\"%@\",comment:\"\")";
+        defaultStringLocalizeFormat=  @"NSLocalizedString(\"%@\", comment:\"%@\")";
     }else{
         isSwift = NO;
         defaultStringRegex = stringRegexsObjectiveC;
         defaultStringLocalizeRegex = localizeRegex;
-        defaultStringLocalizeFormat= @"NSLocalizedString(@\"%@\",nil)";
+        defaultStringLocalizeFormat= @"NSLocalizedString(@\"%@\", %@)";
     }
-    self.defaultLocalizableFilePath = [EditorLocalizable defaultPathLocalizablePath];
+    self.localizableFilePaths = [EditorLocalizable localizableFilePaths];
     [self searchStringAndCallWindowToEdit:textView];
 }
 
@@ -105,16 +105,79 @@ static id sharedPlugin = nil;
             NSString *string = [line substringWithRange:matchedRangeInLine];
             _extractLocationWindowController =  [[ExtractLocalizationWindowController alloc]initWithWindowNibName:@"ExtractLocalizationWindowController"];
             [_extractLocationWindowController showWindow];
+            
+            __weak typeof(self) weakSelf = self;
             _extractLocationWindowController.extractLocalizationDidConfirm = ^(ItemLocalizable * item) {
                 @try {
-                    [EditorLocalizable saveItemLocalizable:item toPath:strongSelf.defaultLocalizableFilePath];
-                    NSString *outputString = [NSString stringWithFormat:defaultStringLocalizeFormat, item.key];
+                    
+                    if (item.key == nil || [item.key isEqualToString:@""]) {
+                        NSAlert *alert = [[NSAlert alloc] init];
+                        [alert addButtonWithTitle:@"OK"];
+                        [alert setMessageText:@"Alert"];
+                        [alert setInformativeText:@"Localizable key can not be blank."];
+                        [alert setAlertStyle:NSCriticalAlertStyle];
+                        [alert runModal];
+                        
+                        return;
+                    }
+                    
+                    BOOL skipAddingKeyToLocalizable = NO;
+                    
+                    // Check if key already exist of not.
+                    if ([EditorLocalizable checkIfKeyExists:item.key]) {
+                        //If key already exists show alert message
+                        
+                        NSAlert *alert = [[NSAlert alloc] init];
+                        [alert addButtonWithTitle:@"OK"];
+                        [alert setMessageText:@"Alert"];
+                        [alert setInformativeText:@"Localizable key already exists."];
+                        [alert setAlertStyle:NSCriticalAlertStyle];
+                        [alert runModal];
+                        
+                        return;
+                    }
+                    
+                    
+                    if ([EditorLocalizable checkIfValueExists:item.value]) {
+                        //If key already exists show alert message
+                        
+                        NSAlert *alert = [[NSAlert alloc] init];
+                        [alert setMessageText:@"Alert"];
+                        [alert setInformativeText:@"Value already exists in Localizable.strings file. Do you want to create a new entry?"];
+                        [alert addButtonWithTitle:@"Create New Key"];
+                        [alert addButtonWithTitle:@"Use Existing Key"];
+                        [alert setAlertStyle:NSCriticalAlertStyle];
+                        
+                        NSInteger result =  [alert runModal];
+                        if (result == NSAlertSecondButtonReturn ) {
+                            skipAddingKeyToLocalizable = YES;
+                            item.key = [EditorLocalizable getKeyForValue:item.value];
+                        }
+                    }
+                    
+                    if (!skipAddingKeyToLocalizable) {
+                        for (NSString* localizableFile in strongSelf.localizableFilePaths) {
+                            [EditorLocalizable saveItemLocalizable:item toPath:localizableFile];
+                        }
+                    }
+                    
+                    NSString *comment;
+                    if ([[ExtractLocalization class] isSwift]) {
+                        comment = (item.comment.length) ? [NSString stringWithFormat:@"\"%@\"",item.comment] : @"";
+                    }
+                    else {
+                        comment = (item.comment.length) ? [NSString stringWithFormat:@"@\"%@\"",item.comment] : @"nil";
+                    }
+                    
+                    NSString *outputString = [NSString stringWithFormat:defaultStringLocalizeFormat, item.key, comment];
                     addedLength = addedLength + outputString.length - string.length;
                     if ([textView shouldChangeTextInRange:matchedRangeInDocument replacementString:outputString]) {
                         [textView.textStorage replaceCharactersInRange:matchedRangeInDocument
                                                   withAttributedString:[[NSAttributedString alloc] initWithString:outputString]];
                         [textView didChangeText];
                     }
+                    
+                    [[weakSelf.extractLocationWindowController window]orderOut:weakSelf];
                 }
                 @catch (NSException *exception) {
                     NSLog(@"Save Item Localizable fail %@", exception);

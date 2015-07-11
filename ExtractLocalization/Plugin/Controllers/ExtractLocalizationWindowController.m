@@ -5,11 +5,14 @@
 -(IBAction)doClickOK:(id)sender{
     ItemLocalizable * item = [[ItemLocalizable alloc]
                               initWithKey:_txtKey.stringValue
-                              andValue:_txtValue.stringValue];
+                              andValue:_txtValue.stringValue andComment:_txtComment.stringValue];
     _extractLocalizationDidConfirm(item);
-    [[self window ]orderOut:self];
-    
 }
+
+- (IBAction)doClickCancel:(id)sender {
+    [[self window] orderOut:self];    
+}
+
 -(void)showWindow{
     [_txtKey setTarget:self];
     [_txtKey setAction:@selector(doClickOK:)];
@@ -20,6 +23,25 @@
     value = [value stringByReplacingOccurrencesOfString:@"\"" withString:@""];
     value = [value stringByReplacingOccurrencesOfString:@"@" withString:@""];
     _txtValue.stringValue = value;
+}
+
+- (BOOL)control:(NSControl*)control textView:(NSTextView*)textView doCommandBySelector:(SEL)commandSelector
+{
+    BOOL result = NO;
+    
+    if (commandSelector == @selector(insertNewline:))
+    {
+        [self doClickOK:textView];
+        return YES;
+    }
+    else if (commandSelector == @selector(insertTab:))
+    {
+        NSLog(@"%ld", (long)textView.tag);
+        NSView *view = [self.window.contentView viewWithTag:(textView.tag + 1)];
+        [view becomeFirstResponder];
+    }
+    
+    return result;
 }
 
 @end

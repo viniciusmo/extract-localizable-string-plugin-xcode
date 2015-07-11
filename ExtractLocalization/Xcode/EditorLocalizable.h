@@ -4,11 +4,17 @@
 
 @interface EditorLocalizable : NSObject
 
-+(NSString *) defaultPathLocalizablePath;
++(NSArray *) localizableFilePaths;
 
 +(void) saveItemLocalizable:(ItemLocalizable *)itemLocalizable
                      toPath:(NSString *) toPath;
 
 +(NSString *) chooseFileLocalizableString;
+
++ (BOOL)checkIfKeyExists:(NSString *)key;
+
++ (BOOL)checkIfValueExists:(NSString *)value;
+
++ (NSString *)getKeyForValue:(NSString *)value;
 
 @end
