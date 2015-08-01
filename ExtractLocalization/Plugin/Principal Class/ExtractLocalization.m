@@ -38,7 +38,7 @@ static id sharedPlugin = nil;
     if (editMenu) {
         NSMenuItem *refactorMenu = [[editMenu submenu] itemWithTitle:NSLocalizedString(@"Refactor", @"Refactor")];
     
-        NSMenuItem *extractLocalizationStringMenu = [[NSMenuItem alloc] initWithTitle:@"Extract Localizable String" action:@selector(extractLocalization) keyEquivalent:@"e"];
+        NSMenuItem *extractLocalizationStringMenu = [[NSMenuItem alloc] initWithTitle:@"Extract Localizable String" action:@selector(extractLocalization) keyEquivalent:@"l"];
         [extractLocalizationStringMenu setKeyEquivalentModifierMask:NSShiftKeyMask | NSAlternateKeyMask];
         [extractLocalizationStringMenu setTarget:self];
         
@@ -69,7 +69,7 @@ static id sharedPlugin = nil;
         isSwift = YES;
         defaultStringRegex = stringRegexsSwift;
         defaultStringLocalizeRegex =  @"NSLocalizedString\\s*\\(\\s*\"(.*)\"\\s*,\\s*(.*)\\s*\\)";
-        defaultStringLocalizeFormat=  @"NSLocalizedString(\"%@\", comment:\"%@\")";
+        defaultStringLocalizeFormat=  @"NSLocalizedString(\"%@\", comment: %@)";
     }else{
         isSwift = NO;
         defaultStringRegex = stringRegexsObjectiveC;
@@ -163,7 +163,7 @@ static id sharedPlugin = nil;
                     
                     NSString *comment;
                     if ([[ExtractLocalization class] isSwift]) {
-                        comment = (item.comment.length) ? [NSString stringWithFormat:@"\"%@\"",item.comment] : @"";
+                        comment = (item.comment.length) ? [NSString stringWithFormat:@"\"%@\"",item.comment] : @"\"\"";
                     }
                     else {
                         comment = (item.comment.length) ? [NSString stringWithFormat:@"@\"%@\"",item.comment] : @"nil";
