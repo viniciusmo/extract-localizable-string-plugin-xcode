@@ -38,7 +38,7 @@ static id sharedPlugin = nil;
     if (editMenu) {
         NSMenuItem *refactorMenu = [[editMenu submenu] itemWithTitle:NSLocalizedString(@"Refactor", @"Refactor")];
     
-        NSMenuItem *extractLocalizationStringMenu = [[NSMenuItem alloc] initWithTitle:@"Extract Localizable String" action:@selector(extractLocalization) keyEquivalent:@"e"];
+        NSMenuItem *extractLocalizationStringMenu = [[NSMenuItem alloc] initWithTitle:@"Extract Localizable String" action:@selector(extractLocalization) keyEquivalent:@"l"];
         [extractLocalizationStringMenu setKeyEquivalentModifierMask:NSShiftKeyMask | NSAlternateKeyMask];
         [extractLocalizationStringMenu setTarget:self];
         
@@ -69,7 +69,7 @@ static id sharedPlugin = nil;
         isSwift = YES;
         defaultStringRegex = stringRegexsSwift;
         defaultStringLocalizeRegex =  @"NSLocalizedString\\s*\\(\\s*\"(.*)\"\\s*,\\s*(.*)\\s*\\)";
-        defaultStringLocalizeFormat=  @"NSLocalizedString(\"%@\", comment:\"%@\")";
+        defaultStringLocalizeFormat=  @"NSLocalizedString(\"%@\", comment: %@)";
     }else{
         isSwift = NO;
         defaultStringRegex = stringRegexsObjectiveC;
@@ -112,9 +112,7 @@ static id sharedPlugin = nil;
                     
                     if (item.key == nil || [item.key isEqualToString:@""]) {
                         NSAlert *alert = [[NSAlert alloc] init];
-                        [alert addButtonWithTitle:@"OK"];
-                        [alert setMessageText:@"Alert"];
-                        [alert setInformativeText:@"Localizable key can not be blank."];
+                        [alert setMessageText:@"Localizable key can not be blank."];
                         [alert setAlertStyle:NSCriticalAlertStyle];
                         [alert runModal];
                         
@@ -128,17 +126,28 @@ static id sharedPlugin = nil;
                         //If key already exists show alert message
                         
                         NSAlert *alert = [[NSAlert alloc] init];
-                        [alert addButtonWithTitle:@"OK"];
-                        [alert setMessageText:@"Alert"];
-                        [alert setInformativeText:@"Localizable key already exists."];
+                        [alert setMessageText:@"Localizable key already exists."];
+                        [alert setInformativeText:@"Do you want to use this key or cancel?"];
                         [alert setAlertStyle:NSCriticalAlertStyle];
-                        [alert runModal];
                         
-                        return;
+                        NSButton *continueButton = [alert addButtonWithTitle:@"Use this key"];
+                        continueButton.keyEquivalent = @"\r";
+                        continueButton.tag = NSModalResponseContinue;
+                        
+                        NSButton *cancelButton = [alert addButtonWithTitle:@"Cancel"];
+                        cancelButton.tag = NSModalResponseCancel;
+                        cancelButton.keyEquivalent = @"\E";
+                        
+                        NSModalResponse response = [alert runModal];
+                        if (response == NSModalResponseCancel) {
+                            return;
+                        } else {
+                            skipAddingKeyToLocalizable = YES;
+                        }
                     }
                     
                     
-                    if ([EditorLocalizable checkIfValueExists:item.value]) {
+                    if ([EditorLocalizable checkIfValueExists:item.value] && !skipAddingKeyToLocalizable) {
                         //If key already exists show alert message
                         
                         NSAlert *alert = [[NSAlert alloc] init];
@@ -163,7 +172,7 @@ static id sharedPlugin = nil;
                     
                     NSString *comment;
                     if ([[ExtractLocalization class] isSwift]) {
-                        comment = (item.comment.length) ? [NSString stringWithFormat:@"\"%@\"",item.comment] : @"";
+                        comment = (item.comment.length) ? [NSString stringWithFormat:@"\"%@\"",item.comment] : @"\"\"";
                     }
                     else {
                         comment = (item.comment.length) ? [NSString stringWithFormat:@"@\"%@\"",item.comment] : @"nil";

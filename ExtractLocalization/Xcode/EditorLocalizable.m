@@ -133,7 +133,11 @@ const static NSString * kEditorLocalizableFilePathLocalizable = @"kEditorLocaliz
 +(void) saveItemLocalizable:(ItemLocalizable *)itemLocalizable
                      toPath:(NSString *) toPath{
     NSError * error = nil;
-    NSString * keyAndValue = [NSString stringWithFormat:@"\n\"%@\" = \"%@\"; // %@",itemLocalizable.key,itemLocalizable.value, itemLocalizable.comment];
+    NSString * keyAndValue = @"";
+    if (itemLocalizable.comment.length > 0) {
+        keyAndValue = [NSString stringWithFormat:@"\n/* %@ */", itemLocalizable.comment];
+    }
+    keyAndValue = [keyAndValue stringByAppendingFormat:@"\n\"%@\" = \"%@\";",itemLocalizable.key,itemLocalizable.value];
     NSString *contents = [NSString stringWithContentsOfFile:toPath
                                                    encoding:NSUTF8StringEncoding
                                                       error:&error];
